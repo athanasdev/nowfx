@@ -57,12 +57,35 @@
                     <div class="tradingview-widget-container">
                         <div id="tradingview_e8033"></div>
                         <script src="/client/assets/js/tv.js"></script>
-                        <script>
+                        {{-- <script>
                             new TradingView.widget({
                                 "width": "100%",
-                                "height": 550,
+                                "height": 700,
                                 "symbol": "BITSTAMP:BTCUSD",
                                 "interval": "D",
+                                "timezone": "Etc/UTC",
+                                "theme": "dark",
+                                "style": "1",
+                                "locale": "en",
+                                "toolbar_bg": "#f1f3f6",
+                                "enable_publishing": false,
+                                "withdateranges": true,
+                                "hide_side_toolbar": false,
+                                "allow_symbol_change": true,
+                                "show_popup_button": true,
+                                "popup_width": "1000",
+                                "popup_height": "650",
+                                "container_id": "tradingview_e8033"
+                            });
+                        </script> --}}
+
+                        {{-- NEW UPDATE SCRIPTS FOR TRADING VIEW --}}
+                         <script>
+                            new TradingView.widget({
+                                "width": "100%",
+                                "height": 700,
+                                "symbol": "BITSTAMP:ETHUSD",
+                                "interval": "1H",
                                 "timezone": "Etc/UTC",
                                 "theme": "dark",
                                 "style": "1",
@@ -107,6 +130,7 @@
                     </ul>
                     <div class="tab-content">
                         <div class="tab-pane fade show active" id="pills-trade-limit" role="tabpanel">
+                           
                             <div class="d-flex justify-content-between">
                                 {{-- BUY --}}
                                 <div class="market-trade-buy" style="max-width: 48%">
@@ -439,7 +463,48 @@ document.addEventListener("dragstart", function(e) {
 });
 </script>
 
-
+<!-- Bottom Navigation Bar -->
+<nav class="navbar navbar-expand fixed-bottom navbar-light bg-light border-top" style="z-index: 1030;">
+    <div class="container-fluid">
+        <ul class="navbar-nav nav-justified w-100">
+            <li class="nav-item">
+                <a class="nav-link text-center" href="{{ route('dashboard') }}">
+                    <i class="icon ion-md-home" style="font-size: 20px;"></i>
+                    <br>
+                    <small>Home</small>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-center" href="{{ route('assets') }}">
+                    <i class="icon ion-md-wallet" style="font-size: 20px;"></i>
+                    <br>
+                    <small>Assets</small>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-center" href="{{ route('ai-trading') }}">
+                    <i class="icon ion-md-trending-up" style="font-size: 20px;"></i>
+                    <br>
+                    <small>AI Trading</small>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-center" href="{{ route('order') }}">
+                    <i class="icon ion-md-list" style="font-size: 20px;"></i>
+                    <br>
+                    <small>Orders</small>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-center" href="{{ route('my-account') }}">
+                    <i class="icon ion-md-person" style="font-size: 20px;"></i>
+                    <br>
+                    <small>Account</small>
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
 
 </body>
 

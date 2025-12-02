@@ -2568,5 +2568,47 @@ tbody.ob-heading {
 
 /*  CRYPTO TABLES */
 
+/* Bottom Navigation Bar */
+.navbar.fixed-bottom {
+    height: 70px;
+    padding: 0;
+}
+
+.navbar.fixed-bottom .navbar-nav .nav-link {
+    padding: 5px 0;
+    color: #18214d;
+    font-size: 12px;
+}
+
+.navbar.fixed-bottom .navbar-nav .nav-link:hover {
+    color: #007bff;
+}
+
+.navbar.fixed-bottom .navbar-nav .nav-link i {
+    margin-bottom: 2px;
+}
+
+/* Add padding to body to account for fixed bottom navbar */
+body {
+    padding-bottom: 70px;
+}
+
+/* Dark mode styles for bottom navigation */
+#dark .navbar.fixed-bottom {
+    background-color: #131722 !important;
+    border-top: 1px solid #2a2e39;
+}
+
+#dark .navbar.fixed-bottom .navbar-nav .nav-link {
+    color: #ffffff;
+}
+
+#dark .navbar.fixed-bottom .navbar-nav .nav-link:hover {
+    color: #007bff;
+}
+
+
+
+
 
 
