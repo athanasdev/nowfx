@@ -13,7 +13,7 @@
     <title>9dfe</title>
     <link rel="icon" href="/client/assets/img/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="/client/assets/css/style.css">
-    <script src="//code.jivosite.com/widget/lV3WFrkVOl" async></script>
+   
 
 </head>
 
@@ -1228,9 +1228,10 @@
             @endif
         });
     </script>
+
+    @include('user.common.navbar')
 </body>
 
 
-<!-- Mirrored from crypo-laravel-live.netlify.app/wallet/ by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 26 Feb 2023 05:56:03 GMT -->
 
 </html>

@@ -11,7 +11,7 @@
   <title>9dfe</title>
   <link rel="icon" href="/client/assets/img/favicon.png" type="image/x-icon">
   <link rel="stylesheet" href="/client/assets/css/style.css">
-  <script src="//code.jivosite.com/widget/lV3WFrkVOl" async></script>
+ 
 
 </head>
 
@@ -882,6 +882,9 @@
   <script src="/client/assets/js/amcharts-core.min.js"></script>
   <script src="/client/assets/js/amcharts.min.js"></script>
   <script src="/client/assets/js/custom.js"></script>
+
+  @include('user.common.navbar')
+  
 </body>
 
 

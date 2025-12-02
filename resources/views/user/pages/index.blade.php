@@ -11,7 +11,7 @@
     <title>9dfe</title>
     <link rel="icon" href="/client/assets/img/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="/client/assets/css/style.css">
-    <script src="//code.jivosite.com/widget/lV3WFrkVOl" async></script>
+    
 
 </head>
 
@@ -431,6 +431,10 @@
             setupPercentButtons('buyForm', 'buyAmount', 'buyPercentages');
             setupPercentButtons('sellForm', 'sellAmount', 'sellPercentages');
 
+            // Setup Modal Buy and Sell forms
+            setupPercentButtons('modalBuyForm', 'modalBuyAmount', 'modalBuyPercentages');
+            setupPercentButtons('modalSellForm', 'modalSellAmount', 'modalSellPercentages');
+
         });
     </script>
 
@@ -463,48 +467,92 @@ document.addEventListener("dragstart", function(e) {
 });
 </script>
 
-<!-- Bottom Navigation Bar -->
-<nav class="navbar navbar-expand fixed-bottom navbar-light bg-light border-top" style="z-index: 1030;">
-    <div class="container-fluid">
-        <ul class="navbar-nav nav-justified w-100">
-            <li class="nav-item">
-                <a class="nav-link text-center" href="{{ route('dashboard') }}">
-                    <i class="icon ion-md-home" style="font-size: 20px;"></i>
-                    <br>
-                    <small>Home</small>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-center" href="{{ route('assets') }}">
-                    <i class="icon ion-md-wallet" style="font-size: 20px;"></i>
-                    <br>
-                    <small>Assets</small>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-center" href="{{ route('ai-trading') }}">
-                    <i class="icon ion-md-trending-up" style="font-size: 20px;"></i>
-                    <br>
-                    <small>AI Trading</small>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-center" href="{{ route('order') }}">
-                    <i class="icon ion-md-list" style="font-size: 20px;"></i>
-                    <br>
-                    <small>Orders</small>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-center" href="{{ route('my-account') }}">
-                    <i class="icon ion-md-person" style="font-size: 20px;"></i>
-                    <br>
-                    <small>Account</small>
-                </a>
-            </li>
-        </ul>
+<!-- AI Trading Modal -->
+{{-- <div class="modal fade" id="aiTradingModal" tabindex="-1" role="dialog" aria-labelledby="aiTradingModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="aiTradingModalLabel">AI Trading</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="market-trade">
+                    <div class="d-flex justify-content-between">
+                   
+                    <div class="market-trade-buy" style="max-width: 48%">
+                        <form method="POST" action="{{ route('bot.place_trade') }}" id="modalBuyForm">
+                            @csrf
+                            <div class="input-group mb-2">
+                                <input type="number" name="amount" class="form-control" id="modalBuyAmount"
+                                    placeholder="Amount to buy" min="0" step="0.01" required />
+                                <input type="hidden" name="trade_type" value="buy" required>
+                                <select class="form-select" name="crypto_category" id="modalBuyPair">
+                                    <option value="BTC" selected>USDT/BTC</option>
+                                    <option value="ETH">USDT/ETH</option>
+                                    <option value="BNB">USDT/BNB</option>
+                                    <option value="XRP">USDT/XRP</option>
+                                    <option value="SOL">USDT/SOL</option>
+                                    <option value="ADA">USDT/ADA</option>
+                                    <option value="DOT">USDT/DOT</option>
+                                    <option value="DOGE">USDT/DOGE</option>
+                                    <option value="LTC">USDT/LTC</option>
+                                </select>
+                            </div>
+
+                            <ul class="market-trade-list" id="modalBuyPercentages">
+                                <li><a href="#" data-percent="25">25%</a></li>
+                                <li><a href="#" data-percent="50">50%</a></li>
+                                <li><a href="#" data-percent="75">75%</a></li>
+                                <li><a href="#" data-percent="100">100%</a></li>
+                            </ul>
+
+                            <button type="submit" class="btn buy">Buy</button>
+                        </form>
+                    </div>
+
+                    
+                    <div class="market-trade-sell" style="max-width: 48%">
+                        <form method="POST" action="{{ route('bot.place_trade') }}" id="modalSellForm">
+                            @csrf
+                            <div class="input-group mb-2">
+                                <input type="number" name="amount" class="form-control"
+                                    id="modalSellAmount" placeholder="Amount to sell" min="0"
+                                    step="0.01" required />
+                                <input type="hidden" name="trade_type" value="sell" required>
+                                <select name="crypto_category" class="form-select" id="modalSellPair">
+                                    <option value="BTC" selected>USDT/BTC</option>
+                                    <option value="ETH">USDT/ETH</option>
+                                    <option value="BNB">USDT/BNB</option>
+                                    <option value="XRP">USDT/XRP</option>
+                                    <option value="SOL">USDT/SOL</option>
+                                    <option value="ADA">USDT/ADA</option>
+                                    <option value="DOT">USDT/DOT</option>
+                                    <option value="DOGE">USDT/DOGE</option>
+                                    <option value="LTC">USDT/LTC</option>
+                                </select>
+
+                            </div>
+
+                            <ul class="market-trade-list" id="modalSellPercentages">
+                                <li><a href="#" data-percent="25">25%</a></li>
+                                <li><a href="#" data-percent="50">50%</a></li>
+                                <li><a href="#" data-percent="75">75%</a></li>
+                                <li><a href="#" data-percent="100">100%</a></li>
+                            </ul>
+
+                            <button type="submit" class="btn sell">Sell</button>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
     </div>
-</nav>
+</div> --}}
+
+@include('user.common.navbar')
 
 </body>
 

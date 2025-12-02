@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,7 +8,7 @@
     <title>9dfe</title>
     <link rel="icon" href="/client/assets/img/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="/client/assets/css/style.css">
-    <script src="//code.jivosite.com/widget/lV3WFrkVOl" async></script>
+  
 
 </head>
 
@@ -942,6 +940,7 @@
         });
     </script>
 
+@include('user.common.navbar')
 
 </body>
 
