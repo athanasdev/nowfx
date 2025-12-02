@@ -960,27 +960,11 @@
         }
     }
 
-    // change theme
-    let ThemeOn = true;
-    $("#changeThemeLight").on("click", function (e) {
-        ThemeOn = !ThemeOn;
-        if (ThemeOn) {
-            $("#changeThemeLight a i").attr("class", "icon ion-md-moon");
-            $("#changeThemeLight i").attr("class", "icon ion-md-moon");
-            $("header").attr("class", "dark-bb");
-            $("body").attr("id", "dark");
-            $(".navbar-brand img").attr("src", "client/assets/img/logo-light.png");
-            $(".wallet-address img").attr(
-                "src",
-                "assets/img/qr-code-light.svg"
-            );
-        } else {
-            $("#changeThemeLight a i").attr("class", "icon ion-md-sunny");
-            $("#changeThemeLight i").attr("class", "icon ion-md-sunny");
-            $("header").attr("class", "light-bb");
-            $("body").attr("id", "light");
-            $(".navbar-brand img").attr("src", "/client/assets/img/logo-light.png");
-            $(".wallet-address img").attr("src", "assets/img/qr-code-dark.svg");
-        }
-    });
+    // set theme to light always
+    $("#changeThemeLight a i").attr("class", "icon ion-md-sunny");
+    $("#changeThemeLight i").attr("class", "icon ion-md-sunny");
+    $("header").attr("class", "light-bb");
+    $("body").attr("id", "light");
+    $(".navbar-brand img").attr("src", "/client/assets/img/logo-light.png");
+    $(".wallet-address img").attr("src", "assets/img/qr-code-dark.svg");
 })(jQuery);

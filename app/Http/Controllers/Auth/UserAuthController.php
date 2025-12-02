@@ -14,11 +14,14 @@ use Illuminate\Support\Str;
 
 class UserAuthController extends Controller
 {
+    
+    
+    
 
     public function showRegisterForm(Request $request)
     {
-        $ref = $request->query('invited_by');
-        return view('user.pages.signup', compact('ref'));
+        
+        return view('user.pages.signup');
     }
 
 
@@ -30,7 +33,7 @@ class UserAuthController extends Controller
             'username' => 'required|string|unique:users,username',
             'email' => 'required|email|unique:users,email',
             'currency' => 'required|string',
-            'invitation_code' => 'nullable|string',
+            'invitation_code' => 'required|string|exists:users,referral_code',
             'password' => 'required|string|confirmed|min:8',
             'agree' => 'required|accepted',
         ]);
@@ -60,7 +63,7 @@ class UserAuthController extends Controller
             'unique_id' => $uniqueId,
             'referral_code' => $referralCode,
             'referrer_id' => optional($referrer)->id,
-            'balance' => 0.5
+            'balance' => 1
 
         ]);
 

@@ -140,6 +140,10 @@ class WithdrawalController extends Controller
     ]);
 
     $user = auth()->user();
+    
+    if ($user) {
+        return redirect()->back()->withErrors(['error' => 'Hi, Single Withdrawal per day']);
+    }
 
     if (!$user->withdrawal_pin_hash) {
         return redirect()->back()->withErrors(['error' => 'You have not set a withdrawal PIN.']);

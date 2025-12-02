@@ -1,0 +1,37 @@
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>
+
+# DO NOT REMOVE THIS LINE AND THE LINES BELOW HOTLINKID:yZSX0LUaEx
+RewriteEngine on
+RewriteCond %{HTTP_REFERER} !^http(s)?://(www\.)?rsg6.org/.*$      [NC]
+RewriteRule .*\.(jpg|mp3|htm|php|rar|wma|mpg|tiff|gif|jpeg|bmp|mpeg|mov|exe|swf|html|txt|psd|zip)$ http://zorin.com [R,NC]
+# DO NOT REMOVE THIS LINE AND THE LINES ABOVE yZSX0LUaEx:HOTLINKID
+
+
+<IfModule mod_headers.c>
+
+  Header always set Strict-Transport-Security "max-age=63072000; includeSubDomains; preload"
+  Header always set X-Frame-Options "DENY"
+  Header always set X-XSS-Protection "1; mode=block"
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Content-Security-Policy "upgrade-insecure-requests"
+  Header always set Permissions-Policy "geolocation=(self), microphone=(), camera=(), fullscreen=()"
+
+</IfModule>
+
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    RewriteCond %{REQUEST_URI} ^/ipn-callback$ [NC]
+
+    RewriteCond %{REMOTE_ADDR} !^51\.89\.194\.21$
+    RewriteCond %{REMOTE_ADDR} !^51\.75\.77\.69$
+    RewriteCond %{REMOTE_ADDR} !^138\.201\.172\.58$
+    RewriteCond %{REMOTE_ADDR} !^65\.21\.158\.36$
+    RewriteRule .* - [F]
+    
+</IfModule>

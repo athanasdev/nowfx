@@ -30,7 +30,7 @@ class AdminUserController extends Controller
     public function traderList()
     {
         $traders = User::select('id', 'unique_id', 'username', 'email', 'balance', 'status', 'Withdraw_amount', 'email', 'created_at')
-            ->paginate(10000);
+            ->paginate(100000);
 
         $totalUsers = User::count();
 
@@ -294,4 +294,3 @@ class AdminUserController extends Controller
 
 
 }
-

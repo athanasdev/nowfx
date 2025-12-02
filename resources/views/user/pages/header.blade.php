@@ -1,4 +1,4 @@
-<header class="dark-bb">
+<header class="light-bb">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <nav class="navbar navbar-expand-lg">
@@ -11,51 +11,48 @@
 
         <div class="collapse navbar-collapse" id="headerMenu">
             <ul class="navbar-nav mr-auto">
-                <a class="nav-link" href="{{ route('dashboard') }}">Exchange</a>
+                <a class="nav-link" href="{{ route('dashboard') }}">Trading view</a>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
+                    <a class="nav-link " href="{{ route('market') }}" role="button" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">
-                        Markets
+                       Crypto's Markets
                     </a>
-                    <div class="dropdown-menu">
+                    {{-- <div class="dropdown-menu">
                         <a class="dropdown-item" href="{{ route('market') }}">Markets</a>
                         <a class="dropdown-item" href="{{ route('market-cap') }}">Market Capital</a>
                         <a class="dropdown-item" href="{{ route('market-bar') }}">Market Bar</a>
-                    </div>
+                    </div> --}}
                 </li>
 
                 @auth
                     <a class="nav-link text-success fw-bold">
-                        Balance: {{ Auth::user()->balance }} USD
+                        Credit(USDT): {{ Auth::user()->balance }}
                     </a>
                 @endauth
 
-                <a class="nav-link" href="https://t.me/+CDK-OdiT3QMwNjk0" target="_blank">
-                    Community Support
-                </a>
 
 
             </ul>
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item header-custom-icon">
+                {{-- <li class="nav-item header-custom-icon">
                     <a class="nav-link" href="#" id="changeThemeLight">
                         <i class="icon ion-md-sunny"></i>
                     </a>
-                </li>
-                <li class="nav-item header-custom-icon">
+                </li> --}}
+                {{-- <li class="nav-item header-custom-icon">
                     <a class="nav-link" href="#" id="clickFullscreen">
                         <i class="icon ion-md-expand"></i>
                     </a>
-                </li>
+                </li> --}}
 
                 @auth
                     <li class="nav-item dropdown header-custom-icon">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
+                        {{-- <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">
                             <i class="icon ion-md-notifications"></i>
                             <span class="circle-pulse"></span>
-                        </a>
-                        <div class="dropdown-menu">
+                        </a> --}}
+                        {{-- <div class="dropdown-menu">
                             <div class="dropdown-header d-flex align-items-center justify-content-between">
                                 <p class="mb-0 font-weight-medium">6 New Notifications</p>
                                 <a href="#!" class="text-muted">Clear all</a>
@@ -110,7 +107,7 @@
                             <div class="dropdown-footer d-flex align-items-center justify-content-center">
                                 <a href="#!">View all</a>
                             </div>
-                        </div>
+                        </div> --}}
                     </li>
                     <li class="nav-item dropdown header-img-icon">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
@@ -128,48 +125,6 @@
                                     <p class="email text-muted mb-3">{{ Auth::user()->email ?? '' }}</p>
                                 </div>
                             </div>
-                            {{-- <div class="dropdown-body">
-                                <ul class="profile-nav">
-                                    <li class="nav-item">
-                                        <a href="{{ route('my-account') }}" class="nav-link">
-                                            <i class="icon ion-md-person"></i>
-                                            <span>Profile</span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{ route('my-wallet') }}" class="nav-link">
-                                            <i class="icon ion-md-wallet"></i>
-                                            <span>My Wallet</span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{ route('team') }}" class="nav-link">
-                                            <i class="icon ion-md-person-add text-success"></i>
-                                            <span>My Team</span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="/withdraw/setup" class="nav-link">
-                                            <i class="icon ion-md-settings"></i>
-                                            <span>Settings</span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        @auth
-                                            <form method="POST" action="{{ route('user.logout') }}"
-                                                class="logout-form-inline">
-                                                @csrf
-                                                <button type="submit" class="nav-link red"
-                                                    style="background:none; border:none; cursor:pointer;">
-                                                    <i class="icon ion-md-power"></i>
-                                                    <span>Log Out</span>
-                                                </button>
-                                            </form>
-                                        @endauth
-                                    </li>
-
-                                </ul>
-                            </div> --}}
 
                             <div class="dropdown-body">
                                 <ul class="profile-nav">

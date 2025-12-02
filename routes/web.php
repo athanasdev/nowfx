@@ -34,6 +34,7 @@ Route::middleware(['guest', 'no-cache'])->group(function () {
     Route::get('/', [UserAuthController::class, 'showLoginForm'])->name('login');
     Route::post('/login', [UserAuthController::class, 'login'])->name('user.login');
 
+    
     Route::get('/register', [UserAuthController::class, 'showRegisterForm'])->name('register');
     Route::post('/register', [UserAuthController::class, 'register'])->name('user.register');
 

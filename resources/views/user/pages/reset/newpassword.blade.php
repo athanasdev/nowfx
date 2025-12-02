@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
 
 <head>
     <meta charset="UTF-8">
@@ -28,7 +28,7 @@
                 </div>
 
                 <div class="form-group mb-3">
-                    <input type="number" name="token" class="form-control" placeholder="Enter Verification Code"
+                    <input type="number" name="code" class="form-control" placeholder="Enter Verification Code"
                         required>
                 </div>
 

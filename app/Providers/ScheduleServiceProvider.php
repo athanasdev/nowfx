@@ -22,7 +22,7 @@ class ScheduleServiceProvider extends ServiceProvider
     public function boot(Schedule $schedule): void
     {
         $schedule->command('trades:close-pending')->everyMinute();
-        Log::info("AUTOMATIC CASHOUT TRADE AFTER SIGINAL ...................");
+        Log::info("AUTOMATIC CASHOUT TRADE AFTER SIGNAL NAMECHEEP SITE");
 
     }
 

@@ -1,10 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-
-<!-- Mirrored from crypo-laravel-live.netlify.app/signup/ by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 26 Feb 2023 05:56:03 GMT -->
-<!-- Added by HTTrack -->
-<meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
 
 <head>
     <meta charset="UTF-8">
@@ -19,7 +16,6 @@
 
 <body id="dark">
 
-
     @include('user.pages.header');
 
     <div class="vh-100 d-flex justify-content-center">
@@ -28,7 +24,7 @@
                 <form action="{{ route('user.register') }}" method="POST">
                     @csrf
                     <span>Create Account</span>
-                    {{-- @include('user.common.alert') --}}
+
                     <div class="form-group">
                         <input type="text" name="username" class="form-control" placeholder="Username" required />
                     </div>
@@ -44,10 +40,20 @@
                         </select>
                     </div>
 
-                    <div class="form-group">
-                        <input type="text" name="invitation_code" class="form-control"
-                            placeholder="Referral Code (Optional)" value="{{ $ref ?? old('invitation_code') }}" />
-                    </div>
+                    {{-- Referral handling --}}
+                    @if (!empty($code))
+                        <input type="hidden" name="invitation_code" value="{{ $code }}" required >
+                        <p class="text-success">
+                            You are joining with referral code from
+                            <strong>{{ $referrer->username ?? 'unknown user' }}</strong>
+                        </p>
+                    @else
+                        <div class="mb-3">
+                            <label>Referral Code (Required)</label>
+                            <input type="text" name="invitation_code" class="form-control"
+                                value="{{ old('invitation_code') }}" required>
+                        </div>
+                    @endif
 
                     <div class="form-group">
                         <input type="password" name="password" class="form-control" placeholder="Password" required />
@@ -71,10 +77,13 @@
                     <p class="mt-3 text-center">
                         Already have an account? <a href="{{ route('login') }}">Sign In</a>
                     </p>
+
                 </form>
+
             </div>
 
             <h2>Already have an account? <a href="{{ route('login') }}">Sign in here</a></h2>
+
         </div>
     </div>
 
@@ -86,51 +95,49 @@
     <script src="/client/assets/js/custom.js"></script>
 
     <!-- SweetAlert2 -->
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    @if(session('success'))
-        Swal.fire({
-            icon: 'success',
-            title: '{{ session("success") }}',
-            toast: true,
-            position: 'top-end',
-            timer: 3000,
-            showConfirmButton: false
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            @if (session('success'))
+                Swal.fire({
+                    icon: 'success',
+                    title: '{{ session('success') }}',
+                    toast: true,
+                    position: 'top-end',
+                    timer: 3000,
+                    showConfirmButton: false
+                });
+            @endif
+
+            @if (session('error'))
+                Swal.fire({
+                    icon: 'error',
+                    title: '{{ session('error') }}',
+                    toast: true,
+                    position: 'top-end',
+                    timer: 4000,
+                    showConfirmButton: false
+                });
+            @endif
+
+            @if ($errors->any())
+                @foreach ($errors->all() as $error)
+                    Swal.fire({
+                        icon: 'error',
+                        title: '{{ $error }}',
+                        toast: true,
+                        position: 'top-end',
+                        timer: 4000,
+                        showConfirmButton: false
+                    });
+                @endforeach
+            @endif
         });
-    @endif
-
-    @if(session('error'))
-        Swal.fire({
-            icon: 'error',
-            title: '{{ session("error") }}',
-            toast: true,
-            position: 'top-end',
-            timer: 4000,
-            showConfirmButton: false
-        });
-    @endif
-
-    @if($errors->any())
-        @foreach ($errors->all() as $error)
-            Swal.fire({
-                icon: 'error',
-                title: '{{ $error }}',
-                toast: true,
-                position: 'top-end',
-                timer: 4000,
-                showConfirmButton: false
-            });
-        @endforeach
-    @endif
-});
-</script>
+    </script>
 
 
 </body>
 
-
-<!-- Mirrored from crypo-laravel-live.netlify.app/signup/ by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 26 Feb 2023 05:56:03 GMT -->
 
 </html>

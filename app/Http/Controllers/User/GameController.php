@@ -354,10 +354,10 @@ public function placeTrade(Request $request)
             ])
         ],
         'trade_type' => ['required', Rule::in(['buy', 'sell'])],
-        'amount' => 'required|numeric|min:15|max:' . $user->balance,
+        'amount' => 'required|numeric|min:1|max:' . $user->balance,
     ], [
         'amount.max' => 'Insufficient balance for this trade amount.',
-        'amount.min' => 'The minimum trade amount is $15.'
+        'amount.min' => 'The minimum trade amount is $1.'
     ]);
 
     // Check 1-minute cooldown

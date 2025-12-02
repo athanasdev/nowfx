@@ -127,6 +127,11 @@ class DashboardController extends Controller
         $totalWithdraws = Withdrawal::where('user_id', $user->id)
             ->where('status', 'complete')
             ->sum('amount');
+            
+        $payments = Payment::where('user_id', $user->id)
+                ->where('payment_status', 'finished') 
+                ->orderBy('id', 'asc')
+                ->paginate(10);
 
         // --- Pass ALL data to the view ---
         return view('user.pages.account', compact(
@@ -137,7 +142,9 @@ class DashboardController extends Controller
             'totalReferralEarning',
             'investedCapital',
             'lifetime_pnl',
-            'totalWithdraws'
+            'totalWithdraws',
+            'payments'
+            
         ));
 
 

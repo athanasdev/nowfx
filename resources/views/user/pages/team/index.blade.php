@@ -2,9 +2,7 @@
 <html lang="en">
 
 
-<!-- Mirrored from crypo-laravel-live.netlify.app/wallet/ by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 26 Feb 2023 05:56:03 GMT -->
-<!-- Added by HTTrack -->
-<meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
 
 <head>
     <meta charset="UTF-8">
@@ -77,10 +75,12 @@
                                                                     per trade, friend A can earn 6% commission per trade
                                                                     service fee, and you can earn 3% commission from his
                                                                     each trade service fee.</p>
+                                                                    
+                                                                <h3>Invitation code: </h3>
                                                                 <div class="input-group">
                                                                     <input type="text" class="form-control"
                                                                         id="referralLinkInput"
-                                                                        value="{{ config('app.url') }}/register/?invited_by={{ $user->referral_code }}"
+                                                                        value="{{ $user->referral_code }}"
                                                                         readonly>
                                                                     <div class="input-group-append">
                                                                         <button class="btn btn-primary" type="button"
@@ -383,6 +383,6 @@
 
 </body>
 
-<!-- Mirrored from crypo-laravel-live.netlify.app/wallet/ by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 26 Feb 2023 05:56:03 GMT -->
+
 
 </html>

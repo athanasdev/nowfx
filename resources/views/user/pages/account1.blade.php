@@ -26,15 +26,15 @@
                         <a class="nav-link active" id="settings-profile-tab" data-toggle="pill" href="#settings-profile"
                             role="tab" aria-controls="settings-profile" aria-selected="true"><i
                                 class="icon ion-md-person"></i> Profile</a>
+                        <a class="nav-link" id="deposit-history-tab" data-toggle="pill" href="#deposit-history"
+                            role="tab" aria-controls="diposit-history" aria-selected="false">
+                            <i class="icon ion-md-wallet"></i> Deposits
+                        </a>
                         <a class="nav-link" id="withdraw-history-tab" data-toggle="pill" href="#withdraw-history"
                             role="tab" aria-controls="withdraw-history" aria-selected="false">
                             <i class="icon ion-md-wallet"></i> Withdraws
                         </a>
                         
-                        <a class="nav-link" id="deposit-history-tab" data-toggle="pill" href="#deposit-history"
-                            role="tab" aria-controls="diposit-history" aria-selected="false">
-                            <i class="icon ion-md-wallet"></i> Deposits
-                        </a>
                     </div>
                 </div>
                 <div class="col-md-12 col-lg-9">
@@ -191,6 +191,7 @@
                                 </div>
                             </div>
                         </div>
+                        
                         
                         <div class="tab-pane fade" id="deposit-history" role="tabpanel"
                             aria-labelledby="deposit-history-tab">

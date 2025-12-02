@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
 
-<!-- Mirrored from crypo-laravel-live.netlify.app/market-capital/ by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 26 Feb 2023 05:55:59 GMT -->
-<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -292,5 +291,4 @@
 </body>
 
 
-<!-- Mirrored from crypo-laravel-live.netlify.app/market-capital/ by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 26 Feb 2023 05:56:00 GMT -->
 </html>

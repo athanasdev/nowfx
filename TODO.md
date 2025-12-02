@@ -1,0 +1,2 @@
+- [x] Change header class from "dark-bb" to "light-bb" in resources/views/user/pages/header.blade.php
+- [x] Modify public/client/assets/js/custom.js to apply light theme on page load and remove toggle functionality
