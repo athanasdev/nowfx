@@ -9,7 +9,7 @@
     <title>Cex77</title>
     <link rel="icon" href="/client/assets/img/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="/client/assets/css/style.css">
-    
+
 
 </head>
 
@@ -543,50 +543,53 @@
     <script src="/client/assets/js/amcharts-core.min.js"></script>
     <script src="/client/assets/js/amcharts.min.js"></script>
     <script src="/client/assets/js/custom.js"></script>
-        <!-- Include SweetAlert2 and Axios -->
+    <!-- Include SweetAlert2 and Axios -->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    @if(session('success'))
-        Swal.fire({
-            icon: 'success',
-            title: '{{ session("success") }}',
-            toast: true,
-            position: 'top-end',
-            timer: 3000,
-            showConfirmButton: false
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            @if (session('success'))
+                Swal.fire({
+                    icon: 'success',
+                    title: '{{ session('success') }}',
+                    toast: false,
+                    position: 'center',
+                    timer: 3000,
+                    showConfirmButton: true
+                });
+            @endif
+
+            @if (session('error'))
+                Swal.fire({
+                    icon: 'error',
+                    title: '{{ session('error') }}',
+                    toast: false,
+                    position: 'center',
+                    timer: 4000,
+                    showConfirmButton: true
+                });
+            @endif
+
+            @if ($errors->any())
+                @foreach ($errors->all() as $error)
+                    Swal.fire({
+                        icon: 'error',
+                        title: '{{ $error }}',
+                        toast: false,
+                        position: 'center',
+                        timer: 4000,
+                        showConfirmButton: true
+                    });
+                @endforeach
+            @endif
         });
-    @endif
+    </script>
 
-    @if(session('error'))
-        Swal.fire({
-            icon: 'error',
-            title: '{{ session("error") }}',
-            toast: true,
-            position: 'top-end',
-            timer: 4000,
-            showConfirmButton: false
-        });
-    @endif
 
-    @if($errors->any())
-        @foreach ($errors->all() as $error)
-            Swal.fire({
-                icon: 'error',
-                title: '{{ $error }}',
-                toast: true,
-                position: 'top-end',
-                timer: 4000,
-                showConfirmButton: false
-            });
-        @endforeach
-    @endif
-});
-</script>
-
-@include('user.common.navbar')
+    @include('user.common.navbar')
 </body>
 
 

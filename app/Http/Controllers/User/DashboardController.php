@@ -211,7 +211,7 @@ class DashboardController extends Controller
 
         ));
 
-        
+
     }
 
     public function mywallet()
@@ -225,7 +225,21 @@ class DashboardController extends Controller
      */
     public function order()
     {
-        return view('user.order');
+        $user = Auth::user();
+
+        // Fetch **all pending investments** for Open Orders
+        $activeUserInvestment = UserInvestment::where('user_id', $user->id)
+            ->where('investment_result', 'pending')
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        // Fetch all investments for Order History
+        $allUserInvestments = UserInvestment::where('user_id', $user->id)
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        return view('user.pages.order', compact('user', 'activeUserInvestment', 'allUserInvestments'));
+        
     }
 
     public function assets()

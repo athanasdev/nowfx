@@ -11,24 +11,24 @@
 
         <div class="collapse navbar-collapse" id="headerMenu">
             <ul class="navbar-nav mr-auto">
-                <a class="nav-link" href="{{ route('dashboard') }}">Trading view</a>
-                <li class="nav-item dropdown">
+                {{-- <a class="nav-link" href="{{ route('dashboard') }}">Trading view</a> --}}
+                {{-- <li class="nav-item dropdown">
                     <a class="nav-link " href="{{ route('market') }}" role="button" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">
                        Crypto's Markets
                     </a>
-                    {{-- <div class="dropdown-menu">
+                    <div class="dropdown-menu">
                         <a class="dropdown-item" href="{{ route('market') }}">Markets</a>
                         <a class="dropdown-item" href="{{ route('market-cap') }}">Market Capital</a>
                         <a class="dropdown-item" href="{{ route('market-bar') }}">Market Bar</a>
-                    </div> --}}
-                </li>
+                    </div> 
+                </li> --}}
 
-                @auth
+                {{-- @auth
                     <a class="nav-link text-success fw-bold">
                         Credit(USDT): {{ Auth::user()->balance }}
                     </a>
-                @endauth
+                @endauth --}}
 
 
 
@@ -128,7 +128,7 @@
 
                             <div class="dropdown-body">
                                 <ul class="profile-nav">
-                                    <li class="nav-item">
+                                    {{-- <li class="nav-item">
                                         <a href="{{ route('my-account') }}" class="nav-link">
                                             <i class="icon ion-md-person"></i>
                                             <span>Profile</span>
@@ -145,7 +145,7 @@
                                             <i class="icon ion-md-person-add text-success"></i>
                                             <span>My Team</span>
                                         </a>
-                                    </li>
+                                    </li> --}}
                                     <li class="nav-item">
                                         <a href="/withdraw/setup" class="nav-link">
                                             <i class="icon ion-md-settings"></i>

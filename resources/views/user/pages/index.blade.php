@@ -17,274 +17,899 @@
 
 <body id="dark">
 
-    <!-- Preloader -->
-    <div class="preloader">
-        <div class="spinner"></div>
-    </div>
-
     @include('user.pages.header');
 
-    <div class="container-fluid mtb15 no-fluid">
-        <div class="row sm-gutters">
-
-            <div class="col-md-10 mx-auto">
-                <!-- Dashboard Cards -->
-                <div class="row mb-4">
-                    <div class="col-md-4">
-                        <div class="card text-center dashboard-card">
-                            <div class="card-body">
-                                <h5 class="card-title"><i class="icon ion-md-wallet"></i> Account Balance</h5>
-                                <p class="card-text text-success">{{ number_format($user->balance ?? 0, 2) }} USDT</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card text-center dashboard-card">
-                            <div class="card-body">
-                                <h5 class="card-title"><i class="icon ion-md-trending-up"></i> Lifetime P&L</h5>
-                                <p class="card-text {{ $lifetime_pnl >= 0 ? 'text-success' : 'text-danger' }}">{{ number_format($lifetime_pnl, 2) }} USDT</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card text-center dashboard-card">
-                            <div class="card-body">
-                                <h5 class="card-title"><i class="icon ion-md-cash"></i> Total Withdrawals</h5>
-                                <p class="card-text text-info">{{ number_format($totalWithdraws, 2) }} USDT</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row mb-4">
-                    <div class="col-md-6">
-                        <div class="card text-center dashboard-card">
-                            <div class="card-body">
-                                <h5 class="card-title"><i class="icon ion-md-business"></i> Invested Capital</h5>
-                                <p class="card-text text-primary">{{ number_format($investedCapital, 2) }} USDT</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="card text-center dashboard-card">
-                            <div class="card-body">
-                                <h5 class="card-title"><i class="icon ion-md-people"></i> Referral Earnings</h5>
-                                <p class="card-text text-warning">{{ number_format($totalReferralEarning, 2) }} USDT</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    <div class="markets ptb70">
+        <div class="container">
+            <div class="row">
 
                 <!-- User Details Section -->
-                <div class="card mb-4 dashboard-card">
-                    <div class="card-header bg-primary text-white">
+                <div class="col-md-12 mb-4">
+                    <div class="card-header text-dark">
                         <h5><i class="icon ion-md-person"></i> User Details</h5>
                     </div>
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-6">
-                                <p><i class="icon ion-md-contact text-primary"></i> <strong>Username:</strong> {{ Auth::user()->username ?? 'Guest' }}</p>
-                                <p><i class="icon ion-md-fingerprint text-primary"></i> <strong>User ID:</strong> {{ Auth::user()->unique_id ?? 'NULL' }}</p>
+                                <p><i class="icon ion-md-contact text-primar"></i> <strong>Username:</strong>
+                                    {{ Auth::user()->username ?? 'Guest' }}</p>
+                                <p><i class="icon ion-md-fingerprint text-primary"></i> <strong>User ID:</strong>
+                                    {{ Auth::user()->unique_id ?? 'NULL' }}</p>
                             </div>
                             <div class="col-md-6">
-                                <p><i class="icon ion-md-mail text-primary"></i> <strong>Email:</strong> {{ Auth::user()->email ?? 'no-email' }}</p>
-                                <p><i class="icon ion-md-checkmark-circle {{ Auth::user()->status == 'active' ? 'text-success' : 'text-warning' }}"></i> <strong>Status:</strong> {{ Auth::user()->status ?? 'blocked' }}</p>
+                                <p><i class="icon ion-md-mail text-primary"></i> <strong>Email:</strong>
+                                    {{ Auth::user()->email ?? 'no-email' }}</p>
+                                <p><i
+                                        class="icon ion-md-checkmark-circle {{ Auth::user()->status == 'active' ? 'text-success' : 'text-warning' }}"></i>
+                                    <strong>Status:</strong> {{ Auth::user()->status ?? 'blocked' }}
+                                </p>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Recent Activities -->
-                <div class="row mb-4">
-                    <div class="col-md-4">
-                        <div class="card">
-                            <div class="card-header">
-                                <h5>Recent Transactions</h5>
-                            </div>
-                            <div class="card-body">
-                                @forelse($transactions as $transaction)
-                                    <div class="mb-2">
-                                        <small>{{ $transaction->created_at->format('d-m-Y') }} - {{ number_format($transaction->amount, 2) }} USDT</small>
-                                        <br>
-                                        <small class="text-muted">{{ $transaction->description }}</small>
-                                    </div>
-                                @empty
-                                    <small class="text-muted">No recent transactions</small>
-                                @endforelse
-                            </div>
+                <div class="col-md-4">
+                    <div class="markets-container">
+                        <div class="markets-content">
+                            <h2>Balance</h2>
+                            <p>{{ number_format($user->balance ?? 0, 2) }} USDT</p>
+                            <span class="green"> + %</span>
+                        </div>
+                        <div class="markets-chart">
+                            <div id="marketsChartBtcLight"></div>
                         </div>
                     </div>
-                    <div class="col-md-4">
-                        <div class="card">
-                            <div class="card-header">
-                                <h5>Recent Withdrawals</h5>
-                            </div>
-                            <div class="card-body">
-                                @forelse($withdrawals as $withdrawal)
-                                    <div class="mb-2">
-                                        <small>{{ $withdrawal->created_at ? $withdrawal->created_at->format('d-m-Y') : '-' }} - {{ number_format($withdrawal->amount, 2) }} USDT</small>
-                                        <br>
-                                        <small class="text-muted">{{ ucfirst($withdrawal->status) }}</small>
-                                    </div>
-                                @empty
-                                    <small class="text-muted">No recent withdrawals</small>
-                                @endforelse
-                            </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="markets-container">
+                        <div class="markets-content">
+                            <h2>Total Withdraws</h2>
+                            <p>{{ number_format($totalWithdraws, 2) }} USDT</p>
+                            <span class="red"> - %</span>
+                        </div>
+                        <div class="markets-chart">
+                            <div id="marketsChartEthLight"></div>
                         </div>
                     </div>
-                    <div class="col-md-4">
-                        <div class="card">
-                            <div class="card-header">
-                                <h5>Recent Deposits</h5>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="markets-container">
+                        <div class="markets-content">
+                            <h2>Referral Earnings</h2>
+                            <p>{{ number_format($totalReferralEarning, 2) }} USDT</p>
+                            <span class="green"> + %</span>
+                        </div>
+                        <div class="markets-chart">
+                            <div id="marketsChartLtcLight"></div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                {{--  markerts code list --}}
+                <div class="col-md-12">
+                    <div class="markets-pair-list">
+                        <ul class="nav nav-pills" id="pills-tab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="pill" href="#STAR" role="tab"
+                                    aria-selected="false"><i class="icon ion-md-star"></i> Favorites</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" data-toggle="pill" href="#BTC" role="tab"
+                                    aria-selected="true">BTC</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="pill" href="#KCS" role="tab"
+                                    aria-selected="true">KCS</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="pill" href="#USDT" role="tab"
+                                    aria-selected="true">USDT</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="pill" href="#ALTS" role="tab"
+                                    aria-selected="true">ALTS</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane fade show" id="STAR" role="tabpanel">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Pairs</th>
+                                            <th>Coin</th>
+                                            <th>Last Price</th>
+                                            <th>Change (24H)</th>
+                                            <th>High (24H)</th>
+                                            <th>Low (24h)</th>
+                                            <th>Volume (24h)</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr data-href="/">
+                                            <td><i class="icon ion-md-star"></i> ETH/BTC</td>
+                                            <td><img src="/client/assets/img/icon/1.png" alt="eth"> ETH</td>
+                                            <td>7394.06</td>
+                                            <td class="green">+0.78%</td>
+                                            <td>7444.91</td>
+                                            <td>7267.06</td>
+                                            <td>431,687,258.77</td>
+                                        </tr>
+                                        <tr data-href="/">
+                                            <td><i class="icon ion-md-star"></i> EOS/BTC</td>
+                                            <td><img src="/client/assets/img/icon/2.png" alt="vid"> EOS</td>
+                                            <td>6984.06</td>
+                                            <td class="red">-1.65%</td>
+                                            <td>6554.91</td>
+                                            <td>6548.06</td>
+                                            <td>431,684,298.45</td>
+                                        </tr>
+                                        <tr data-href="/">
+                                            <td><i class="icon ion-md-star"></i> LTC/BTC</td>
+                                            <td><img src="/client/assets/img/icon/3.png" alt="bitcoin"> LTC</td>
+                                            <td>4582.06</td>
+                                            <td class="green">+2.62%</td>
+                                            <td>7444.91</td>
+                                            <td>4646.06</td>
+                                            <td>431,687,258.23</td>
+                                        </tr>
+                                        <tr data-href="/">
+                                            <td><i class="icon ion-md-star"></i> KCS/BTC</td>
+                                            <td><img src="/client/assets/img/icon/4.png" alt="bitcoin"> KCS</td>
+                                            <td>7394.06</td>
+                                            <td class="red">-0.94%</td>
+                                            <td>7444.91</td>
+                                            <td>7267.06</td>
+                                            <td>431,687,258.33</td>
+                                        </tr>
+                                        <tr data-href="/">
+                                            <td><i class="icon ion-md-star"></i> COTI/BTC</td>
+                                            <td><img src="/client/assets/img/icon/5.png" alt="bitcoin"> COTI</td>
+                                            <td>7394.06</td>
+                                            <td class="green">+0.78%</td>
+                                            <td>7444.91</td>
+                                            <td>7267.06</td>
+                                            <td>431,687,258.53</td>
+                                        </tr>
+                                        <tr data-href="/">
+                                            <td><i class="icon ion-md-star"></i> TRX/BTC</td>
+                                            <td><img src="/client/assets/img/icon/6.png" alt="bitcoin"> TRX</td>
+                                            <td>7394.06</td>
+                                            <td class="green">+0.71%</td>
+                                            <td>7444.91</td>
+                                            <td>7267.06</td>
+                                            <td>431,687,258.53</td>
+                                        </tr>
+                                        <tr data-href="/">
+                                            <td><i class="icon ion-md-star"></i> XMR/BTC</td>
+                                            <td><img src="/client/assets/img/icon/7.png" alt="bitcoin"> XMR</td>
+                                            <td>7394.06</td>
+                                            <td class="red">-0.73%</td>
+                                            <td>7444.91</td>
+                                            <td>7267.06</td>
+                                            <td>431,687,258.77</td>
+                                        </tr>
+                                        <tr data-href="/">
+                                            <td><i class="icon ion-md-star"></i> ADA/BTC</td>
+                                            <td><img src="/client/assets/img/icon/8.png" alt="bitcoin"> ADA</td>
+                                            <td>7394.06</td>
+                                            <td class="red">-1.20%</td>
+                                            <td>7444.91</td>
+                                            <td>7267.06</td>
+                                            <td>431,687,258.35</td>
+                                        </tr>
+                                        <tr data-href="/">
+                                            <td><i class="icon ion-md-star"></i> BNB/BTC</td>
+                                            <td><img src="/client/assets/img/icon/9.png" alt="bitcoin"> BNB</td>
+                                            <td>7394.06</td>
+                                            <td class="green">+0.74%</td>
+                                            <td>7444.91</td>
+                                            <td>7267.06</td>
+                                            <td>431,687,258.23</td>
+                                        </tr>
+                                        <tr data-href="/">
+                                            <td><i class="icon ion-md-star"></i> NEO/BTC</td>
+                                            <td><img src="/client/assets/img/icon/10.png" alt="bitcoin"> NEO</td>
+                                            <td>7394.06</td>
+                                            <td class="red">-0.78%</td>
+                                            <td>7444.91</td>
+                                            <td>7267.06</td>
+                                            <td>431,687,258.77</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
-                            <div class="card-body">
-                                @forelse($deposits as $deposit)
-                                    <div class="mb-2">
-                                        <small>{{ $deposit->created_at ? $deposit->created_at->format('d-m-Y') : '-' }} - {{ number_format($deposit->price_amount, 2) }} {{ strtoupper($deposit->price_currency) }}</small>
-                                        <br>
-                                        <small class="text-muted">{{ ucfirst($deposit->payment_status) }}</small>
-                                    </div>
-                                @empty
-                                    <small class="text-muted">No recent deposits</small>
-                                @endforelse
+                            <div class="tab-pane fade show active" id="BTC" role="tabpanel">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Pairs</th>
+                                            <th>Coin</th>
+                                            <th>Last Price</th>
+                                            <th>Change (24H)</th>
+                                            <th>High (24H)</th>
+                                            <th>Low (24h)</th>
+                                            <th>Volume (24h)</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr data-href="/">
+                                            <td><i class="icon ion-md-star"></i> ETH/BTC</td>
+                                            <td><img src="/client/assets/img/icon/1.png" alt="eth"> ETH</td>
+                                            <td>7394.06</td>
+                                            <td class="green">+0.78%</td>
+                                            <td>7444.91</td>
+                                            <td>7267.06</td>
+                                            <td>431,687,258.77</td>
+                                        </tr>
+                                        <tr data-href="/">
+                                            <td><i class="icon ion-md-star"></i> EOS/BTC</td>
+                                            <td><img src="/client/assets/img/icon/2.png" alt="vid"> EOS</td>
+                                            <td>6984.06</td>
+                                            <td class="red">-1.65%</td>
+                                            <td>6554.91</td>
+                                            <td>6548.06</td>
+                                            <td>431,684,298.45</td>
+                                        </tr>
+                                        <tr data-href="/">
+                                            <td><i class="icon ion-md-star"></i> LTC/BTC</td>
+                                            <td><img src="/client/assets/img/icon/3.png" alt="bitcoin"> LTC</td>
+                                            <td>4582.06</td>
+                                            <td class="green">+2.62%</td>
+                                            <td>7444.91</td>
+                                            <td>4646.06</td>
+                                            <td>431,687,258.23</td>
+                                        </tr>
+                                        <tr data-href="/">
+                                            <td><i class="icon ion-md-star"></i> KCS/BTC</td>
+                                            <td><img src="/client/assets/img/icon/4.png" alt="bitcoin"> KCS</td>
+                                            <td>7394.06</td>
+                                            <td class="red">-0.94%</td>
+                                            <td>7444.91</td>
+                                            <td>7267.06</td>
+                                            <td>431,687,258.33</td>
+                                        </tr>
+                                        <tr data-href="/">
+                                            <td><i class="icon ion-md-star"></i> COTI/BTC</td>
+                                            <td><img src="/client/assets/img/icon/5.png" alt="bitcoin"> COTI</td>
+                                            <td>7394.06</td>
+                                            <td class="green">+0.78%</td>
+                                            <td>7444.91</td>
+                                            <td>7267.06</td>
+                                            <td>431,687,258.53</td>
+                                        </tr>
+                                        <tr data-href="/">
+                                            <td><i class="icon ion-md-star"></i> TRX/BTC</td>
+                                            <td><img src="/client/assets/img/icon/6.png" alt="bitcoin"> TRX</td>
+                                            <td>7394.06</td>
+                                            <td class="green">+0.71%</td>
+                                            <td>7444.91</td>
+                                            <td>7267.06</td>
+                                            <td>431,687,258.53</td>
+                                        </tr>
+                                        <tr data-href="/">
+                                            <td><i class="icon ion-md-star"></i> XMR/BTC</td>
+                                            <td><img src="/client/assets/img/icon/7.png" alt="bitcoin"> XMR</td>
+                                            <td>7394.06</td>
+                                            <td class="red">-0.73%</td>
+                                            <td>7444.91</td>
+                                            <td>7267.06</td>
+                                            <td>431,687,258.77</td>
+                                        </tr>
+                                        <tr data-href="/">
+                                            <td><i class="icon ion-md-star"></i> ADA/BTC</td>
+                                            <td><img src="/client/assets/img/icon/8.png" alt="bitcoin"> ADA</td>
+                                            <td>7394.06</td>
+                                            <td class="red">-1.20%</td>
+                                            <td>7444.91</td>
+                                            <td>7267.06</td>
+                                            <td>431,687,258.35</td>
+                                        </tr>
+                                        <tr data-href="/">
+                                            <td><i class="icon ion-md-star"></i> BNB/BTC</td>
+                                            <td><img src="/client/assets/img/icon/9.png" alt="bitcoin"> BNB</td>
+                                            <td>7394.06</td>
+                                            <td class="green">+0.74%</td>
+                                            <td>7444.91</td>
+                                            <td>7267.06</td>
+                                            <td>431,687,258.23</td>
+                                        </tr>
+                                        <tr data-href="/">
+                                            <td><i class="icon ion-md-star"></i> NEO/BTC</td>
+                                            <td><img src="/client/assets/img/icon/10.png" alt="bitcoin"> NEO</td>
+                                            <td>7394.06</td>
+                                            <td class="red">-0.78%</td>
+                                            <td>7444.91</td>
+                                            <td>7267.06</td>
+                                            <td>431,687,258.77</td>
+                                        </tr>
+                                        <tr data-href="/">
+                                            <td><i class="icon ion-md-star"></i> TOMO/BTC</td>
+                                            <td><img src="/client/assets/img/icon/11.png" alt="bitcoin"> TOMO</td>
+                                            <td>7394.06</td>
+                                            <td class="red">-4.78%</td>
+                                            <td>7444.91</td>
+                                            <td>7267.06</td>
+                                            <td>431,687,258.33</td>
+                                        </tr>
+                                        <tr data-href="/">
+                                            <td><i class="icon ion-md-star"></i> MKR/BTC</td>
+                                            <td><img src="/client/assets/img/icon/12.png" alt="bitcoin"> MKR</td>
+                                            <td>7394.06</td>
+                                            <td class="green">+0.32%</td>
+                                            <td>7444.91</td>
+                                            <td>7267.06</td>
+                                            <td>431,687,258.14</td>
+                                        </tr>
+                                        <tr data-href="/">
+                                            <td><i class="icon ion-md-star"></i> ZEC/BTC</td>
+                                            <td><img src="/client/assets/img/icon/13.png" alt="bitcoin"> ZEC</td>
+                                            <td>7394.06</td>
+                                            <td class="green">+5.53%</td>
+                                            <td>7444.91</td>
+                                            <td>7267.06</td>
+                                            <td>431,687,258.22</td>
+                                        </tr>
+                                        <tr data-href="/">
+                                            <td><i class="icon ion-md-star"></i> VSYS/BTC</td>
+                                            <td><img src="/client/assets/img/icon/14.png" alt="bitcoin"> VSYS</td>
+                                            <td>7394.06</td>
+                                            <td class="red">-3.52%</td>
+                                            <td>7444.91</td>
+                                            <td>7267.06</td>
+                                            <td>431,687,258.35</td>
+                                        </tr>
+                                        <tr data-href="/">
+                                            <td><i class="icon ion-md-star"></i> ATOM/BTC</td>
+                                            <td><img src="/client/assets/img/icon/15.png" alt="bitcoin"> ATOM</td>
+                                            <td>7394.06</td>
+                                            <td class="red">-2.78%</td>
+                                            <td>7444.91</td>
+                                            <td>7267.06</td>
+                                            <td>431,687,258.21</td>
+                                        </tr>
+                                        <tr data-href="/">
+                                            <td><i class="icon ion-md-star"></i> MTV/BTC</td>
+                                            <td><img src="/client/assets/img/icon/16.png" alt="bitcoin"> MTV</td>
+                                            <td>7394.06</td>
+                                            <td class="green">+1.78%</td>
+                                            <td>7444.91</td>
+                                            <td>7267.06</td>
+                                            <td>431,687,258.32</td>
+                                        </tr>
+                                        <tr data-href="/">
+                                            <td><i class="icon ion-md-star"></i> XTZ/BTC</td>
+                                            <td><img src="/client/assets/img/icon/17.png" alt="bitcoin"> XTZ</td>
+                                            <td>7394.06</td>
+                                            <td class="red">-3.78%</td>
+                                            <td>7444.91</td>
+                                            <td>7267.06</td>
+                                            <td>431,687,258.25</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
+                            <div class="tab-pane fade show" id="KCS" role="tabpanel">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Pairs</th>
+                                            <th>Coin</th>
+                                            <th>Last Price</th>
+                                            <th>Change (24H)</th>
+                                            <th>High (24H)</th>
+                                            <th>Low (24h)</th>
+                                            <th>Volume (24h)</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr data-href="/">
+                                            <td><i class="icon ion-md-star"></i> ETH/KCS</td>
+                                            <td><img src="/client/assets/img/icon/1.png" alt="eth"> ETH</td>
+                                            <td>7394.06</td>
+                                            <td class="green">+0.78%</td>
+                                            <td>7444.91</td>
+                                            <td>7267.06</td>
+                                            <td>431,687,258.77</td>
+                                        </tr>
+                                        <tr data-href="/">
+                                            <td><i class="icon ion-md-star"></i> EOS/KCS</td>
+                                            <td><img src="/client/assets/img/icon/2.png" alt="vid"> EOS</td>
+                                            <td>6984.06</td>
+                                            <td class="red">-1.65%</td>
+                                            <td>6554.91</td>
+                                            <td>6548.06</td>
+                                            <td>431,684,298.45</td>
+                                        </tr>
+                                        <tr data-href="/">
+                                            <td><i class="icon ion-md-star"></i> LTC/KCS</td>
+                                            <td><img src="/client/assets/img/icon/3.png" alt="bitcoin"> LTC</td>
+                                            <td>4582.06</td>
+                                            <td class="green">+2.62%</td>
+                                            <td>7444.91</td>
+                                            <td>4646.06</td>
+                                            <td>431,687,258.23</td>
+                                        </tr>
+                                        <tr data-href="/">
+                                            <td><i class="icon ion-md-star"></i> KCS/KCS</td>
+                                            <td><img src="/client/assets/img/icon/4.png" alt="bitcoin"> KCS</td>
+                                            <td>7394.06</td>
+                                            <td class="red">-0.94%</td>
+                                            <td>7444.91</td>
+                                            <td>7267.06</td>
+                                            <td>431,687,258.33</td>
+                                        </tr>
+                                        <tr data-href="/">
+                                            <td><i class="icon ion-md-star"></i> COTI/KCS</td>
+                                            <td><img src="/client/assets/img/icon/5.png" alt="bitcoin"> COTI</td>
+                                            <td>7394.06</td>
+                                            <td class="green">+0.78%</td>
+                                            <td>7444.91</td>
+                                            <td>7267.06</td>
+                                            <td>431,687,258.53</td>
+                                        </tr>
+                                        <tr data-href="/">
+                                            <td><i class="icon ion-md-star"></i> TRX/KCS</td>
+                                            <td><img src="/client/assets/img/icon/6.png" alt="bitcoin"> TRX</td>
+                                            <td>7394.06</td>
+                                            <td class="green">+0.71%</td>
+                                            <td>7444.91</td>
+                                            <td>7267.06</td>
+                                            <td>431,687,258.53</td>
+                                        </tr>
+                                        <tr data-href="/">
+                                            <td><i class="icon ion-md-star"></i> XMR/KCS</td>
+                                            <td><img src="/client/assets/img/icon/7.png" alt="bitcoin"> XMR</td>
+                                            <td>7394.06</td>
+                                            <td class="red">-0.73%</td>
+                                            <td>7444.91</td>
+                                            <td>7267.06</td>
+                                            <td>431,687,258.77</td>
+                                        </tr>
+                                        <tr data-href="/">
+                                            <td><i class="icon ion-md-star"></i> ADA/KCS</td>
+                                            <td><img src="/client/assets/img/icon/8.png" alt="bitcoin"> ADA</td>
+                                            <td>7394.06</td>
+                                            <td class="red">-1.20%</td>
+                                            <td>7444.91</td>
+                                            <td>7267.06</td>
+                                            <td>431,687,258.35</td>
+                                        </tr>
+                                        <tr data-href="/">
+                                            <td><i class="icon ion-md-star"></i> BNB/KCS</td>
+                                            <td><img src="/client/assets/img/icon/9.png" alt="bitcoin"> BNB</td>
+                                            <td>7394.06</td>
+                                            <td class="green">+0.74%</td>
+                                            <td>7444.91</td>
+                                            <td>7267.06</td>
+                                            <td>431,687,258.23</td>
+                                        </tr>
+                                        <tr data-href="/">
+                                            <td><i class="icon ion-md-star"></i> NEO/KCS</td>
+                                            <td><img src="/client/assets/img/icon/10.png" alt="bitcoin"> NEO</td>
+                                            <td>7394.06</td>
+                                            <td class="red">-0.78%</td>
+                                            <td>7444.91</td>
+                                            <td>7267.06</td>
+                                            <td>431,687,258.77</td>
+                                        </tr>
+                                        <tr data-href="/">
+                                            <td><i class="icon ion-md-star"></i> TOMO/KCS</td>
+                                            <td><img src="/client/assets/img/icon/11.png" alt="bitcoin"> TOMO</td>
+                                            <td>7394.06</td>
+                                            <td class="red">-4.78%</td>
+                                            <td>7444.91</td>
+                                            <td>7267.06</td>
+                                            <td>431,687,258.33</td>
+                                        </tr>
+                                        <tr data-href="/">
+                                            <td><i class="icon ion-md-star"></i> MKR/KCS</td>
+                                            <td><img src="/client/assets/img/icon/12.png" alt="bitcoin"> MKR</td>
+                                            <td>7394.06</td>
+                                            <td class="green">+0.32%</td>
+                                            <td>7444.91</td>
+                                            <td>7267.06</td>
+                                            <td>431,687,258.14</td>
+                                        </tr>
+                                        <tr data-href="/">
+                                            <td><i class="icon ion-md-star"></i> ZEC/KCS</td>
+                                            <td><img src="/client/assets/img/icon/13.png" alt="bitcoin"> ZEC</td>
+                                            <td>7394.06</td>
+                                            <td class="green">+5.53%</td>
+                                            <td>7444.91</td>
+                                            <td>7267.06</td>
+                                            <td>431,687,258.22</td>
+                                        </tr>
+                                        <tr data-href="/">
+                                            <td><i class="icon ion-md-star"></i> VSYS/KCS</td>
+                                            <td><img src="/client/assets/img/icon/14.png" alt="bitcoin"> VSYS</td>
+                                            <td>7394.06</td>
+                                            <td class="red">-3.52%</td>
+                                            <td>7444.91</td>
+                                            <td>7267.06</td>
+                                            <td>431,687,258.35</td>
+                                        </tr>
+                                        <tr data-href="/">
+                                            <td><i class="icon ion-md-star"></i> ATOM/KCS</td>
+                                            <td><img src="/client/assets/img/icon/15.png" alt="bitcoin"> ATOM</td>
+                                            <td>7394.06</td>
+                                            <td class="red">-2.78%</td>
+                                            <td>7444.91</td>
+                                            <td>7267.06</td>
+                                            <td>431,687,258.21</td>
+                                        </tr>
+                                        <tr data-href="/">
+                                            <td><i class="icon ion-md-star"></i> MTV/KCS</td>
+                                            <td><img src="/client/assets/img/icon/16.png" alt="bitcoin"> MTV</td>
+                                            <td>7394.06</td>
+                                            <td class="green">+1.78%</td>
+                                            <td>7444.91</td>
+                                            <td>7267.06</td>
+                                            <td>431,687,258.32</td>
+                                        </tr>
+                                        <tr data-href="/">
+                                            <td><i class="icon ion-md-star"></i> XTZ/KCS</td>
+                                            <td><img src="/client/assets/img/icon/17.png" alt="bitcoin"> XTZ</td>
+                                            <td>7394.06</td>
+                                            <td class="red">-3.78%</td>
+                                            <td>7444.91</td>
+                                            <td>7267.06</td>
+                                            <td>431,687,258.25</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="tab-pane fade show" id="USDT" role="tabpanel">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Pairs</th>
+                                            <th>Coin</th>
+                                            <th>Last Price</th>
+                                            <th>Change (24H)</th>
+                                            <th>High (24H)</th>
+                                            <th>Low (24h)</th>
+                                            <th>Volume (24h)</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr data-href="/">
+                                            <td><i class="icon ion-md-star"></i> ETH/USDT</td>
+                                            <td><img src="/client/assets/img/icon/1.png" alt="eth"> ETH</td>
+                                            <td>7394.06</td>
+                                            <td class="green">+0.78%</td>
+                                            <td>7444.91</td>
+                                            <td>7267.06</td>
+                                            <td>431,687,258.77</td>
+                                        </tr>
+                                        <tr data-href="/">
+                                            <td><i class="icon ion-md-star"></i> EOS/USDT</td>
+                                            <td><img src="/client/assets/img/icon/2.png" alt="vid"> EOS</td>
+                                            <td>6984.06</td>
+                                            <td class="red">-1.65%</td>
+                                            <td>6554.91</td>
+                                            <td>6548.06</td>
+                                            <td>431,684,298.45</td>
+                                        </tr>
+                                        <tr data-href="/">
+                                            <td><i class="icon ion-md-star"></i> LTC/USDT</td>
+                                            <td><img src="/client/assets/img/icon/3.png" alt="bitcoin"> LTC</td>
+                                            <td>4582.06</td>
+                                            <td class="green">+2.62%</td>
+                                            <td>7444.91</td>
+                                            <td>4646.06</td>
+                                            <td>431,687,258.23</td>
+                                        </tr>
+                                        <tr data-href="/">
+                                            <td><i class="icon ion-md-star"></i> USDT/USDT</td>
+                                            <td><img src="/client/assets/img/icon/4.png" alt="bitcoin"> USDT</td>
+                                            <td>7394.06</td>
+                                            <td class="red">-0.94%</td>
+                                            <td>7444.91</td>
+                                            <td>7267.06</td>
+                                            <td>431,687,258.33</td>
+                                        </tr>
+                                        <tr data-href="/">
+                                            <td><i class="icon ion-md-star"></i> COTI/USDT</td>
+                                            <td><img src="/client/assets/img/icon/5.png" alt="bitcoin"> COTI</td>
+                                            <td>7394.06</td>
+                                            <td class="green">+0.78%</td>
+                                            <td>7444.91</td>
+                                            <td>7267.06</td>
+                                            <td>431,687,258.53</td>
+                                        </tr>
+                                        <tr data-href="/">
+                                            <td><i class="icon ion-md-star"></i> TRX/USDT</td>
+                                            <td><img src="/client/assets/img/icon/6.png" alt="bitcoin"> TRX</td>
+                                            <td>7394.06</td>
+                                            <td class="green">+0.71%</td>
+                                            <td>7444.91</td>
+                                            <td>7267.06</td>
+                                            <td>431,687,258.53</td>
+                                        </tr>
+                                        <tr data-href="/">
+                                            <td><i class="icon ion-md-star"></i> XMR/USDT</td>
+                                            <td><img src="/client/assets/img/icon/7.png" alt="bitcoin"> XMR</td>
+                                            <td>7394.06</td>
+                                            <td class="red">-0.73%</td>
+                                            <td>7444.91</td>
+                                            <td>7267.06</td>
+                                            <td>431,687,258.77</td>
+                                        </tr>
+                                        <tr data-href="/">
+                                            <td><i class="icon ion-md-star"></i> ADA/USDT</td>
+                                            <td><img src="/client/assets/img/icon/8.png" alt="bitcoin"> ADA</td>
+                                            <td>7394.06</td>
+                                            <td class="red">-1.20%</td>
+                                            <td>7444.91</td>
+                                            <td>7267.06</td>
+                                            <td>431,687,258.35</td>
+                                        </tr>
+                                        <tr data-href="/">
+                                            <td><i class="icon ion-md-star"></i> BNB/USDT</td>
+                                            <td><img src="/client/assets/img/icon/9.png" alt="bitcoin"> BNB</td>
+                                            <td>7394.06</td>
+                                            <td class="green">+0.74%</td>
+                                            <td>7444.91</td>
+                                            <td>7267.06</td>
+                                            <td>431,687,258.23</td>
+                                        </tr>
+                                        <tr data-href="/">
+                                            <td><i class="icon ion-md-star"></i> NEO/USDT</td>
+                                            <td><img src="/client/assets/img/icon/10.png" alt="bitcoin"> NEO</td>
+                                            <td>7394.06</td>
+                                            <td class="red">-0.78%</td>
+                                            <td>7444.91</td>
+                                            <td>7267.06</td>
+                                            <td>431,687,258.77</td>
+                                        </tr>
+                                        <tr data-href="/">
+                                            <td><i class="icon ion-md-star"></i> TOMO/USDT</td>
+                                            <td><img src="/client/assets/img/icon/11.png" alt="bitcoin"> TOMO</td>
+                                            <td>7394.06</td>
+                                            <td class="red">-4.78%</td>
+                                            <td>7444.91</td>
+                                            <td>7267.06</td>
+                                            <td>431,687,258.33</td>
+                                        </tr>
+                                        <tr data-href="/">
+                                            <td><i class="icon ion-md-star"></i> MKR/USDT</td>
+                                            <td><img src="/client/assets/img/icon/12.png" alt="bitcoin"> MKR</td>
+                                            <td>7394.06</td>
+                                            <td class="green">+0.32%</td>
+                                            <td>7444.91</td>
+                                            <td>7267.06</td>
+                                            <td>431,687,258.14</td>
+                                        </tr>
+                                        <tr data-href="/">
+                                            <td><i class="icon ion-md-star"></i> ZEC/USDT</td>
+                                            <td><img src="/client/assets/img/icon/13.png" alt="bitcoin"> ZEC</td>
+                                            <td>7394.06</td>
+                                            <td class="green">+5.53%</td>
+                                            <td>7444.91</td>
+                                            <td>7267.06</td>
+                                            <td>431,687,258.22</td>
+                                        </tr>
+                                        <tr data-href="/">
+                                            <td><i class="icon ion-md-star"></i> VSYS/USDT</td>
+                                            <td><img src="/client/assets/img/icon/14.png" alt="bitcoin"> VSYS</td>
+                                            <td>7394.06</td>
+                                            <td class="red">-3.52%</td>
+                                            <td>7444.91</td>
+                                            <td>7267.06</td>
+                                            <td>431,687,258.35</td>
+                                        </tr>
+                                        <tr data-href="/">
+                                            <td><i class="icon ion-md-star"></i> ATOM/USDT</td>
+                                            <td><img src="/client/assets/img/icon/15.png" alt="bitcoin"> ATOM</td>
+                                            <td>7394.06</td>
+                                            <td class="red">-2.78%</td>
+                                            <td>7444.91</td>
+                                            <td>7267.06</td>
+                                            <td>431,687,258.21</td>
+                                        </tr>
+                                        <tr data-href="/">
+                                            <td><i class="icon ion-md-star"></i> MTV/USDT</td>
+                                            <td><img src="/client/assets/img/icon/16.png" alt="bitcoin"> MTV</td>
+                                            <td>7394.06</td>
+                                            <td class="green">+1.78%</td>
+                                            <td>7444.91</td>
+                                            <td>7267.06</td>
+                                            <td>431,687,258.32</td>
+                                        </tr>
+                                        <tr data-href="/">
+                                            <td><i class="icon ion-md-star"></i> XTZ/USDT</td>
+                                            <td><img src="/client/assets/img/icon/17.png" alt="bitcoin"> XTZ</td>
+                                            <td>7394.06</td>
+                                            <td class="red">-3.78%</td>
+                                            <td>7444.91</td>
+                                            <td>7267.06</td>
+                                            <td>431,687,258.25</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="tab-pane fade show" id="ALTS" role="tabpanel">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Pairs</th>
+                                            <th>Coin</th>
+                                            <th>Last Price</th>
+                                            <th>Change (24H)</th>
+                                            <th>High (24H)</th>
+                                            <th>Low (24h)</th>
+                                            <th>Volume (24h)</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr data-href="/">
+                                            <td><i class="icon ion-md-star"></i> ETH/ALTS</td>
+                                            <td><img src="/client/assets/img/icon/1.png" alt="eth"> ETH</td>
+                                            <td>7394.06</td>
+                                            <td class="green">+0.78%</td>
+                                            <td>7444.91</td>
+                                            <td>7267.06</td>
+                                            <td>431,687,258.77</td>
+                                        </tr>
+                                        <tr data-href="/">
+                                            <td><i class="icon ion-md-star"></i> EOS/ALTS</td>
+                                            <td><img src="/client/assets/img/icon/2.png" alt="vid"> EOS</td>
+                                            <td>6984.06</td>
+                                            <td class="red">-1.65%</td>
+                                            <td>6554.91</td>
+                                            <td>6548.06</td>
+                                            <td>431,684,298.45</td>
+                                        </tr>
+                                        <tr data-href="/">
+                                            <td><i class="icon ion-md-star"></i> LTC/ALTS</td>
+                                            <td><img src="/client/assets/img/icon/3.png" alt="bitcoin"> LTC</td>
+                                            <td>4582.06</td>
+                                            <td class="green">+2.62%</td>
+                                            <td>7444.91</td>
+                                            <td>4646.06</td>
+                                            <td>431,687,258.23</td>
+                                        </tr>
+                                        <tr data-href="/">
+                                            <td><i class="icon ion-md-star"></i> ALTS/ALTS</td>
+                                            <td><img src="/client/assets/img/icon/4.png" alt="bitcoin"> ALTS</td>
+                                            <td>7394.06</td>
+                                            <td class="red">-0.94%</td>
+                                            <td>7444.91</td>
+                                            <td>7267.06</td>
+                                            <td>431,687,258.33</td>
+                                        </tr>
+                                        <tr data-href="/">
+                                            <td><i class="icon ion-md-star"></i> COTI/ALTS</td>
+                                            <td><img src="/client/assets/img/icon/5.png" alt="bitcoin"> COTI</td>
+                                            <td>7394.06</td>
+                                            <td class="green">+0.78%</td>
+                                            <td>7444.91</td>
+                                            <td>7267.06</td>
+                                            <td>431,687,258.53</td>
+                                        </tr>
+                                        <tr data-href="/">
+                                            <td><i class="icon ion-md-star"></i> TRX/ALTS</td>
+                                            <td><img src="/client/assets/img/icon/6.png" alt="bitcoin"> TRX</td>
+                                            <td>7394.06</td>
+                                            <td class="green">+0.71%</td>
+                                            <td>7444.91</td>
+                                            <td>7267.06</td>
+                                            <td>431,687,258.53</td>
+                                        </tr>
+                                        <tr data-href="/">
+                                            <td><i class="icon ion-md-star"></i> XMR/ALTS</td>
+                                            <td><img src="/client/assets/img/icon/7.png" alt="bitcoin"> XMR</td>
+                                            <td>7394.06</td>
+                                            <td class="red">-0.73%</td>
+                                            <td>7444.91</td>
+                                            <td>7267.06</td>
+                                            <td>431,687,258.77</td>
+                                        </tr>
+                                        <tr data-href="/">
+                                            <td><i class="icon ion-md-star"></i> ADA/ALTS</td>
+                                            <td><img src="/client/assets/img/icon/8.png" alt="bitcoin"> ADA</td>
+                                            <td>7394.06</td>
+                                            <td class="red">-1.20%</td>
+                                            <td>7444.91</td>
+                                            <td>7267.06</td>
+                                            <td>431,687,258.35</td>
+                                        </tr>
+                                        <tr data-href="/">
+                                            <td><i class="icon ion-md-star"></i> BNB/ALTS</td>
+                                            <td><img src="/client/assets/img/icon/9.png" alt="bitcoin"> BNB</td>
+                                            <td>7394.06</td>
+                                            <td class="green">+0.74%</td>
+                                            <td>7444.91</td>
+                                            <td>7267.06</td>
+                                            <td>431,687,258.23</td>
+                                        </tr>
+                                        <tr data-href="/">
+                                            <td><i class="icon ion-md-star"></i> NEO/ALTS</td>
+                                            <td><img src="/client/assets/img/icon/10.png" alt="bitcoin"> NEO</td>
+                                            <td>7394.06</td>
+                                            <td class="red">-0.78%</td>
+                                            <td>7444.91</td>
+                                            <td>7267.06</td>
+                                            <td>431,687,258.77</td>
+                                        </tr>
+                                        <tr data-href="/">
+                                            <td><i class="icon ion-md-star"></i> TOMO/ALTS</td>
+                                            <td><img src="/client/assets/img/icon/11.png" alt="bitcoin"> TOMO</td>
+                                            <td>7394.06</td>
+                                            <td class="red">-4.78%</td>
+                                            <td>7444.91</td>
+                                            <td>7267.06</td>
+                                            <td>431,687,258.33</td>
+                                        </tr>
+                                        <tr data-href="/">
+                                            <td><i class="icon ion-md-star"></i> MKR/ALTS</td>
+                                            <td><img src="/client/assets/img/icon/12.png" alt="bitcoin"> MKR</td>
+                                            <td>7394.06</td>
+                                            <td class="green">+0.32%</td>
+                                            <td>7444.91</td>
+                                            <td>7267.06</td>
+                                            <td>431,687,258.14</td>
+                                        </tr>
+                                        <tr data-href="/">
+                                            <td><i class="icon ion-md-star"></i> ZEC/ALTS</td>
+                                            <td><img src="/client/assets/img/icon/13.png" alt="bitcoin"> ZEC</td>
+                                            <td>7394.06</td>
+                                            <td class="green">+5.53%</td>
+                                            <td>7444.91</td>
+                                            <td>7267.06</td>
+                                            <td>431,687,258.22</td>
+                                        </tr>
+                                        <tr data-href="/">
+                                            <td><i class="icon ion-md-star"></i> VSYS/ALTS</td>
+                                            <td><img src="/client/assets/img/icon/14.png" alt="bitcoin"> VSYS</td>
+                                            <td>7394.06</td>
+                                            <td class="red">-3.52%</td>
+                                            <td>7444.91</td>
+                                            <td>7267.06</td>
+                                            <td>431,687,258.35</td>
+                                        </tr>
+                                        <tr data-href="/">
+                                            <td><i class="icon ion-md-star"></i> ATOM/ALTS</td>
+                                            <td><img src="/client/assets/img/icon/15.png" alt="bitcoin"> ATOM</td>
+                                            <td>7394.06</td>
+                                            <td class="red">-2.78%</td>
+                                            <td>7444.91</td>
+                                            <td>7267.06</td>
+                                            <td>431,687,258.21</td>
+                                        </tr>
+                                        <tr data-href="/">
+                                            <td><i class="icon ion-md-star"></i> MTV/ALTS</td>
+                                            <td><img src="/client/assets/img/icon/16.png" alt="bitcoin"> MTV</td>
+                                            <td>7394.06</td>
+                                            <td class="green">+1.78%</td>
+                                            <td>7444.91</td>
+                                            <td>7267.06</td>
+                                            <td>431,687,258.32</td>
+                                        </tr>
+                                        <tr data-href="/">
+                                            <td><i class="icon ion-md-star"></i> XTZ/ALTS</td>
+                                            <td><img src="/client/assets/img/icon/17.png" alt="bitcoin"> XTZ</td>
+                                            <td>7394.06</td>
+                                            <td class="red">-3.78%</td>
+                                            <td>7444.91</td>
+                                            <td>7267.06</td>
+                                            <td>431,687,258.25</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <a href="#" class="load-more btn">Load More <i
+                                    class="icon ion-md-arrow-down"></i></a>
                         </div>
                     </div>
                 </div>
             </div>
-
-
-
-            <div class="col-md-10 mx-auto">
-                <div class="market-history market-order mt-3">
-                    <ul class="nav nav-pills mb-3" role="tablist">
-                        <li class="nav-item">
-                            <a class="nav-link active" data-toggle="pill" href="#open-orders" role="tab"
-                                aria-selected="true">Open Orders</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" data-toggle="pill" href="#order-history" role="tab"
-                                aria-selected="false">Order History</a>
-                        </li>
-                    </ul>
-
-                    <div class="tab-content">
-                        {{-- OPEN ORDERS --}}
-                        <div class="tab-pane fade show active" id="open-orders" role="tabpanel">
-                            @if ($activeUserInvestment->isEmpty())
-                                <div class="text-center text-muted p-3">
-                                    <i class="icon ion-md-document"></i> No pending investments
-                                </div>
-                            @else
-                                <div class="table-responsive" style="overflow-x:auto;">
-                                    <table class="table table-striped mb-0 " style="min-width: 800px;">
-                                        <thead class="">
-                                            <tr>
-                                                <th>Time</th>
-                                                <th>Crypto</th>
-                                                <th>Action</th>
-                                                <th>Amount (USD)</th>
-                                                <th>Daily Profit (USD)</th>
-                                                <th>Status</th>
-                                                <th>Action</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach ($activeUserInvestment as $inv)
-                                                <tr>
-                                                    <td>{{ $inv->created_at->format('Y-m-d H:i') }}</td>
-                                                    <td>{{ $inv->crypto_category ?? '-' }}</td>
-                                                    <td
-                                                        class="{{ $inv->type == 'sell' ? 'text-danger' : 'text-success' }}">
-                                                        {{ $inv->type }}
-                                                    </td>
-                                                    <td>{{ number_format($inv->amount, 2) }}</td>
-                                                    <td>{{ number_format($inv->daily_profit_amount, 2) }}</td>
-                                                    <td>
-                                                        <span
-                                                            class="badge badge-warning">{{ ucfirst($inv->investment_result) }}</span>
-                                                    </td>
-                                                    <td>
-                                                        @if ($inv->investment_result === 'pending')
-                                                            <form method="POST"
-                                                                action="{{ route('bot.close_trade') }}"
-                                                                onsubmit="return confirm('Are you sure you want to close this trade?');">
-                                                                @csrf
-                                                                <input type="hidden" name="user_investment_id"
-                                                                    value="{{ $inv->id }}">
-                                                                <button type="submit" class="btn btn-sm btn-danger">
-                                                                    <i class="fas fa-times-circle"></i> Close
-                                                                </button>
-                                                            </form>
-                                                        @else
-                                                            -
-                                                        @endif
-                                                    </td>
-                                                </tr>
-                                            @endforeach
-                                        </tbody>
-                                    </table>
-                                </div>
-                            @endif
-                        </div>
-
-                        {{-- ORDER HISTORY --}}
-                        <div class="tab-pane fade" id="order-history" role="tabpanel">
-                            @if ($allUserInvestments->isEmpty())
-                                <div class="text-center text-muted p-3">
-                                    <i class="icon ion-md-document"></i> No investment history
-                                </div>
-                            @else
-                                <div class="table-responsive" style="overflow-x:auto;">
-                                    <table class="table table-striped mb-0 " style="min-width: 800px;">
-                                        <thead class="">
-                                            <tr>
-                                                <th>Time</th>
-                                                <th>Crypto</th>
-                                                <th>Action</th>
-                                                <th>Amount (USD)</th>
-                                                <th>Daily Profit (USD)</th>
-                                                <th>Total Paid (USD)</th>
-                                                <th>Status</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach ($allUserInvestments as $inv)
-                                                <tr>
-                                                    <td>{{ $inv->created_at->format('Y-m-d H:i') }}</td>
-                                                    <td>{{ $inv->crypto_category ?? '-' }}</td>
-                                                    <td
-                                                        class="{{ $inv->type == 'sell' ? 'text-danger' : 'text-success' }}">
-                                                        {{ $inv->type }}
-                                                    </td>
-                                                    <td>{{ number_format($inv->amount, 2) }}</td>
-                                                    <td>{{ number_format($inv->daily_profit_amount, 2) }}</td>
-                                                    <td>{{ number_format($inv->total_profit_paid_out, 2) }}</td>
-                                                    <td>
-                                                        @if ($inv->investment_result == 'gain')
-                                                            <span class="badge badge-success">Gain</span>
-                                                        @elseif ($inv->investment_result == 'lose')
-                                                            <span class="badge badge-danger">Lose</span>
-                                                        @elseif ($inv->investment_result == 'canceled')
-                                                            <span class="badge badge-info">canceled</span>
-                                                        @else
-                                                            <span class="badge badge-warning">Pending</span>
-                                                        @endif
-                                                    </td>
-                                                </tr>
-                                            @endforeach
-                                        </tbody>
-                                    </table>
-                                </div>
-
-                            @endif
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
         </div>
-
     </div>
 
     <script src="/client/assets/js/jquery-3.4.1.min.js"></script>
@@ -292,62 +917,11 @@
     <script src="/client/assets/js/bootstrap.min.js"></script>
     <script src="/client/assets/js/amcharts-core.min.js"></script>
     <script src="/client/assets/js/amcharts.min.js"></script>
-    <script src="/client/assets/js/jquery.mCustomScrollbar.js"></script>
     <script src="/client/assets/js/custom.js"></script>
-
-
-
-    <script>
-        $('tbody, .market-news ul').mCustomScrollbar({
-            theme: 'minimal',
-        });
-    </script>
-
-
-
-    <script>
-        // Hide preloader when page is fully loaded
-        window.addEventListener('load', function() {
-            const preloader = document.querySelector('.preloader');
-            if (preloader) {
-                preloader.style.display = 'none';
-            }
-        });
-
-        // Disable right click
-        document.addEventListener("contextmenu", function(e) {
-            e.preventDefault();
-        });
-
-        // Disable keyboard shortcuts for copy, paste, view-source, inspect
-        document.addEventListener("keydown", function(e) {
-            // Prevent Ctrl+U (view source), Ctrl+C (copy), Ctrl+V (paste), Ctrl+Shift+I (dev tools), F12
-            if (
-                (e.ctrlKey && (e.key === "u" || e.key === "U" || e.key === "c" || e.key === "v" || e.key === "x" ||
-                    e.key === "s")) ||
-                (e.ctrlKey && e.shiftKey && (e.key === "I" || e.key === "i" || e.key === "J" || e.key === "j")) ||
-                (e.key === "F12")
-            ) {
-                e.preventDefault();
-            }
-        });
-
-        // Disable text selection
-        document.addEventListener("selectstart", function(e) {
-            e.preventDefault();
-        });
-
-        // Disable drag
-        document.addEventListener("dragstart", function(e) {
-            e.preventDefault();
-        });
-        
-    </script>
-
-   
 
     @include('user.common.navbar')
 
 </body>
+
 
 </html>

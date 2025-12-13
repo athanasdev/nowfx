@@ -908,10 +908,10 @@
                 Swal.fire({
                     icon: 'success',
                     title: '{{ session('success') }}',
-                    toast: true,
-                    position: 'top-end',
+                    toast: false,
+                    position: 'center',
                     timer: 3000,
-                    showConfirmButton: false
+                    showConfirmButton: true
                 });
             @endif
 
@@ -919,10 +919,10 @@
                 Swal.fire({
                     icon: 'error',
                     title: '{{ session('error') }}',
-                    toast: true,
-                    position: 'top-end',
+                    toast: false,
+                    position: 'center',
                     timer: 4000,
-                    showConfirmButton: false
+                    showConfirmButton: true
                 });
             @endif
 
@@ -931,10 +931,10 @@
                     Swal.fire({
                         icon: 'error',
                         title: '{{ $error }}',
-                        toast: true,
-                        position: 'top-end',
+                        toast: false,
+                        position: 'center',
                         timer: 4000,
-                        showConfirmButton: false
+                        showConfirmButton: true
                     });
                 @endforeach
             @endif
@@ -943,6 +943,7 @@
 
 
 @include('user.common.navbar')
+
 
 </body>
 

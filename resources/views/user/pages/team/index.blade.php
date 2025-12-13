@@ -340,16 +340,16 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    <script>
+   <script>
         document.addEventListener('DOMContentLoaded', function() {
             @if (session('success'))
                 Swal.fire({
                     icon: 'success',
                     title: '{{ session('success') }}',
-                    toast: true,
-                    position: 'top-end',
+                    toast: false,
+                    position: 'center',
                     timer: 3000,
-                    showConfirmButton: false
+                    showConfirmButton: true
                 });
             @endif
 
@@ -357,10 +357,10 @@
                 Swal.fire({
                     icon: 'error',
                     title: '{{ session('error') }}',
-                    toast: true,
-                    position: 'top-end',
+                    toast: false,
+                    position: 'center',
                     timer: 4000,
-                    showConfirmButton: false
+                    showConfirmButton: true
                 });
             @endif
 
@@ -369,10 +369,10 @@
                     Swal.fire({
                         icon: 'error',
                         title: '{{ $error }}',
-                        toast: true,
-                        position: 'top-end',
+                        toast: false,
+                        position: 'center',
                         timer: 4000,
-                        showConfirmButton: false
+                        showConfirmButton: true
                     });
                 @endforeach
             @endif

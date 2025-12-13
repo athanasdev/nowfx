@@ -290,6 +290,7 @@
   <script src="/client/assets/js/custom.js"></script>
 
   @include('user.common.navbar')
+  
 </body>
 
 

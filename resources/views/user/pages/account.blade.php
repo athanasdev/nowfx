@@ -10,7 +10,7 @@
     <title>Cex77</title>
     <link rel="icon" href="/client/assets/img/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="/client/assets/css/style.css">
-   
+
 
 </head>
 
@@ -30,7 +30,7 @@
                             role="tab" aria-controls="withdraw-history" aria-selected="false">
                             <i class="icon ion-md-wallet"></i> Withdraws
                         </a>
-                        
+
                         <a class="nav-link" id="deposit-history-tab" data-toggle="pill" href="#deposit-history"
                             role="tab" aria-controls="diposit-history" aria-selected="false">
                             <i class="icon ion-md-wallet"></i> Deposits
@@ -164,11 +164,14 @@
                                                         </td>
                                                         <td>
                                                             @if ($withdrawal->status === 'complete')
-                                                                <i class="icon ion-md-checkmark-circle-outline text-success"></i>
+                                                                <i
+                                                                    class="icon ion-md-checkmark-circle-outline text-success"></i>
                                                             @elseif($withdrawal->status === 'pending')
-                                                                <i class="icon ion-md-close-circle-outline text-warning"></i>
+                                                                <i
+                                                                    class="icon ion-md-close-circle-outline text-warning"></i>
                                                             @else
-                                                                <i class="icon ion-md-close-circle-outline text-danger"></i>
+                                                                <i
+                                                                    class="icon ion-md-close-circle-outline text-danger"></i>
                                                             @endif
                                                             {{ ucfirst($withdrawal->status) }}
                                                         </td>
@@ -191,7 +194,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="tab-pane fade" id="deposit-history" role="tabpanel"
                             aria-labelledby="deposit-history-tab">
                             <div class="card">
@@ -215,7 +218,8 @@
                                                         </td>
                                                         <td>
                                                             @if ($payment->payment_status === 'finished')
-                                                                <i class="icon ion-md-checkmark-circle-outline text-success"></i>
+                                                                <i
+                                                                    class="icon ion-md-checkmark-circle-outline text-success"></i>
                                                             @elseif($payment->payment_status === 'waiting')
                                                                 <i class="icon ion-md-time text-warning"></i>
                                                             @elseif($payment->payment_status === 'failed')
@@ -242,7 +246,7 @@
                                         <div class="d-flex justify-content-center mt-3 pagination-wrapper">
                                             {{ $payments->links('vendor.pagination.custom') }}
                                         </div>
-                                        
+
                                     </div>
                                 </div>
                             </div>
@@ -266,35 +270,75 @@
     <script src="/client/assets/js/amcharts.min.js"></script>
     <script src="/client/assets/js/custom.js"></script>
     <script>
-// Disable right click
-document.addEventListener("contextmenu", function(e) {
-    e.preventDefault();
-});
+        // Disable right click
+        document.addEventListener("contextmenu", function(e) {
+            e.preventDefault();
+        });
 
-// Disable keyboard shortcuts for copy, paste, view-source, inspect
-document.addEventListener("keydown", function(e) {
-    // Prevent Ctrl+U (view source), Ctrl+C (copy), Ctrl+V (paste), Ctrl+Shift+I (dev tools), F12
-    if (
-        (e.ctrlKey && (e.key === "u" || e.key === "U" || e.key === "c" || e.key === "v" || e.key === "x" || e.key === "s")) ||
-        (e.ctrlKey && e.shiftKey && (e.key === "I" || e.key === "i" || e.key === "J" || e.key === "j")) ||
-        (e.key === "F12")
-    ) {
-        e.preventDefault();
-    }
-});
+        // Disable keyboard shortcuts for copy, paste, view-source, inspect
+        document.addEventListener("keydown", function(e) {
+            // Prevent Ctrl+U (view source), Ctrl+C (copy), Ctrl+V (paste), Ctrl+Shift+I (dev tools), F12
+            if (
+                (e.ctrlKey && (e.key === "u" || e.key === "U" || e.key === "c" || e.key === "v" || e.key === "x" ||
+                    e.key === "s")) ||
+                (e.ctrlKey && e.shiftKey && (e.key === "I" || e.key === "i" || e.key === "J" || e.key === "j")) ||
+                (e.key === "F12")
+            ) {
+                e.preventDefault();
+            }
+        });
 
-// Disable text selection
-document.addEventListener("selectstart", function(e) {
-    e.preventDefault();
-});
+        // Disable text selection
+        document.addEventListener("selectstart", function(e) {
+            e.preventDefault();
+        });
 
-// Disable drag
-document.addEventListener("dragstart", function(e) {
-    e.preventDefault();
-});
-</script>
+        // Disable drag
+        document.addEventListener("dragstart", function(e) {
+            e.preventDefault();
+        });
+    </script>
 
-@include('user.common.navbar')
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            @if (session('success'))
+                Swal.fire({
+                    icon: 'success',
+                    title: '{{ session('success') }}',
+                    toast: false,
+                    position: 'center',
+                    timer: 3000,
+                    showConfirmButton: true
+                });
+            @endif
+
+            @if (session('error'))
+                Swal.fire({
+                    icon: 'error',
+                    title: '{{ session('error') }}',
+                    toast: false,
+                    position: 'center',
+                    timer: 4000,
+                    showConfirmButton: true
+                });
+            @endif
+
+            @if ($errors->any())
+                @foreach ($errors->all() as $error)
+                    Swal.fire({
+                        icon: 'error',
+                        title: '{{ $error }}',
+                        toast: false,
+                        position: 'center',
+                        timer: 4000,
+                        showConfirmButton: true
+                    });
+                @endforeach
+            @endif
+        });
+    </script>
+
+    @include('user.common.navbar')
 </body>
 
 

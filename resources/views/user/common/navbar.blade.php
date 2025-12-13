@@ -10,10 +10,17 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-center" href="{{ route('assets') }}">
+                <a class="nav-link text-center" href="{{ route('my-wallet') }}">
                     <i class="icon ion-md-wallet" style="font-size: 20px;"></i>
                     <br>
                     <small>Assets</small>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-center" href="{{ route('team') }}">
+                    <i class="icon ion-md-person" style="font-size: 20px;"></i>
+                    <br>
+                    <small>Team</small>
                 </a>
             </li>
             <li class="nav-item">
