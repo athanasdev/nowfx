@@ -6,11 +6,11 @@ use App\Http\Controllers\Controller;
 use App\Models\GameSetting;
 use App\Models\Payment;
 use App\Models\Transaction;
-use Illuminate\Http\Request;
-use App\Models\User; // Your User model
+use App\Models\User;  // Your User model
 use App\Models\UserInvestment;
 use App\Models\Withdrawal;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
@@ -18,9 +18,6 @@ use Illuminate\Support\Facades\Session;
 
 class DashboardController extends Controller
 {
-
-
-
     // public function home()
     // {
     //     $user = Auth::user();
@@ -57,7 +54,6 @@ class DashboardController extends Controller
     //     ));
     // }
 
-
     public function home()
     {
         $user = Auth::user();
@@ -76,11 +72,23 @@ class DashboardController extends Controller
         return view('user.pages.index', compact('user', 'activeUserInvestment', 'allUserInvestments'));
     }
 
+    public function trading()
+    {
+        $user = Auth::user();
 
+        // Fetch **all pending investments** for Open Orders
+        $activeUserInvestment = UserInvestment::where('user_id', $user->id)
+            ->where('investment_result', 'pending')
+            ->orderBy('created_at', 'desc')
+            ->get();
 
+        // Fetch all investments for Order History
+        $allUserInvestments = UserInvestment::where('user_id', $user->id)
+            ->orderBy('created_at', 'desc')
+            ->get();
 
-
-
+        return view('user.pages.trade', compact('user', 'activeUserInvestment', 'allUserInvestments'));
+    }
 
     public function myaccount()
     {
@@ -101,12 +109,12 @@ class DashboardController extends Controller
             ->orderBy('created_at', 'desc')
             ->paginate(10, ['*'], 'deposits_page');
 
-
         // --- Your Existing Statistics Calculations (These are all correct) ---
         $totalReferralEarning = Transaction::where('user_id', $user->id)
             ->where('type', 'credit')
             ->where(function ($query) {
-                $query->where('description', 'like', '%Referral Commission%')
+                $query
+                    ->where('description', 'like', '%Referral Commission%')
                     ->orWhere('description', 'like', '%commission from%');
             })
             ->sum('amount');
@@ -127,30 +135,25 @@ class DashboardController extends Controller
         $totalWithdraws = Withdrawal::where('user_id', $user->id)
             ->where('status', 'complete')
             ->sum('amount');
-            
+
         $payments = Payment::where('user_id', $user->id)
-                ->where('payment_status', 'finished') 
-                ->orderBy('id', 'asc')
-                ->paginate(10);
+            ->where('payment_status', 'finished')
+            ->orderBy('id', 'asc')
+            ->paginate(10);
 
         // --- Pass ALL data to the view ---
         return view('user.pages.account', compact(
             'user',
-            'transactions',         // This is now a paginated collection
-            'withdrawals',          // The new withdrawals collection
-            'deposits',             // The new deposits collection
+            'transactions',  // This is now a paginated collection
+            'withdrawals',  // The new withdrawals collection
+            'deposits',  // The new deposits collection
             'totalReferralEarning',
             'investedCapital',
             'lifetime_pnl',
             'totalWithdraws',
             'payments'
-            
         ));
-
-
     }
-
-
 
     public function mywallet()
     {
@@ -158,18 +161,15 @@ class DashboardController extends Controller
         return view('user.pages.wallet.wallet', compact('user'));
     }
 
-
     /**
      * New method to fetch transactions for the authenticated user as JSON.
      */
-
-
-    public function  order()
+    public function order()
     {
         return view('user.order');
     }
 
-    public function  assets()
+    public function assets()
     {
         return view('user.layouts.assets');
     }
@@ -179,11 +179,11 @@ class DashboardController extends Controller
         return view('user.language');
     }
 
-
     public function market()
     {
         return view('user.pages.markets.index');
     }
+
     public function market_cap()
     {
         return view('user.pages.market-capital.index');
@@ -191,6 +191,6 @@ class DashboardController extends Controller
 
     public function market_cap_bar()
     {
-        return  view('user.pages.market-capital-bar.index');
+        return view('user.pages.market-capital-bar.index');
     }
 }

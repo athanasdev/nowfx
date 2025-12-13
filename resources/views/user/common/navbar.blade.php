@@ -1,4 +1,5 @@
-<nav class="navbar navbar-expand fixed-bottom navbar-light bg-light border-top" style="z-index: 1060; background-color:blue;">
+<nav class="navbar navbar-expand fixed-bottom navbar-light bg-light border-top"
+    style="z-index: 1100 !important; background-color:blue;">
     <div class="container-fluid">
         <ul class="navbar-nav nav-justified w-100">
             <li class="nav-item">
@@ -16,10 +17,10 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-center" href="#" data-toggle="modal" data-target="#aiTradingModal">
+                <a class="nav-link text-center" href="{{ route('trading') }}" >
                     <i class="icon ion-md-trending-up" style="font-size: 20px;"></i>
                     <br>
-                    <small>AI Trading</small>
+                    <small>Trading</small>
                 </a>
             </li>
             <li class="nav-item">

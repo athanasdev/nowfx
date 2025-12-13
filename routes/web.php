@@ -70,6 +70,7 @@ Route::get('/market-bar', [DashboardController::class, 'market_cap_bar'])->name(
 
 Route::middleware(['auth:web', 'history'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'home'])->name('dashboard');
+    Route::get('/trading', [DashboardController::class , 'trading'])->name('trading');
     Route::get('/assets', [DashboardController::class, 'assets'])->name('assets');
     Route::get('/order', [DashboardController::class, 'order'])->name('order');
     Route::get('/my-account', [DashboardController::class, 'myaccount'])->name('my-account');
