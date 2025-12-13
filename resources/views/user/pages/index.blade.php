@@ -28,203 +28,128 @@
         <div class="row sm-gutters">
 
             <div class="col-md-10 mx-auto">
-                <div class="main-chart mb15 light-variant">
-                    <!-- TradingView Widget BEGIN -->
-                    <div class="tradingview-widget-container">
-                        <div id="tradingview_e8053"></div>
-                        <script src="/client/assets/js/tv.js"></script>
-                        <script>
-                            new TradingView.widget({
-                                "width": "100%",
-                                "height": 550,
-                                "symbol": "BITSTAMP:BTCUSD",
-                                "interval": "D",
-                                "timezone": "Etc/UTC",
-                                "theme": "Light",
-                                "style": "1",
-                                "locale": "en",
-                                "toolbar_bg": "#f1f3f6",
-                                "enable_publishing": false,
-                                "withdateranges": true,
-                                "hide_side_toolbar": false,
-                                "allow_symbol_change": true,
-                                "show_popup_button": true,
-                                "popup_width": "1000",
-                                "popup_height": "650",
-                                "container_id": "tradingview_e8053"
-                            });
-                        </script>
-                    </div>
-                    <!-- TradingView Widget END -->
-                </div>
-                <div class="main-chart mb15 dark-variant">
-                    <!-- TradingView Widget BEGIN -->
-                    <div class="tradingview-widget-container">
-                        <div id="tradingview_e8033"></div>
-                        <script src="/client/assets/js/tv.js"></script>
-                        {{-- <script>
-                            new TradingView.widget({
-                                "width": "100%",
-                                "height": 700,
-                                "symbol": "BITSTAMP:BTCUSD",
-                                "interval": "D",
-                                "timezone": "Etc/UTC",
-                                "theme": "dark",
-                                "style": "1",
-                                "locale": "en",
-                                "toolbar_bg": "#f1f3f6",
-                                "enable_publishing": false,
-                                "withdateranges": true,
-                                "hide_side_toolbar": false,
-                                "allow_symbol_change": true,
-                                "show_popup_button": true,
-                                "popup_width": "1000",
-                                "popup_height": "650",
-                                "container_id": "tradingview_e8033"
-                            });
-                        </script> --}}
-
-                        {{-- NEW UPDATE SCRIPTS FOR TRADING VIEW --}}
-                        <script>
-                            new TradingView.widget({
-                                "width": "100%",
-                                "height": 700,
-                                "symbol": "BITSTAMP:ETHUSD",
-                                "interval": "1H",
-                                "timezone": "Etc/UTC",
-                                "theme": "dark",
-                                "style": "1",
-                                "locale": "en",
-                                "toolbar_bg": "#f1f3f6",
-                                "enable_publishing": false,
-                                "withdateranges": true,
-                                "hide_side_toolbar": false,
-                                "allow_symbol_change": true,
-                                "show_popup_button": true,
-                                "popup_width": "1000",
-                                "popup_height": "650",
-                                "container_id": "tradingview_e8033"
-                            });
-                        </script>
-                    </div>
-                    <!-- TradingView Widget END -->
-                </div>
-
-                {{-- THE TRADING PANELS IS HERE  --}}
-
-                <div class="market-trade">
-                    <ul class="nav nav-pills" role="tablist">
-                        <li class="nav-item">
-                            <a class="nav-link active" data-toggle="pill" href="#pills-trade-limit" role="tab"
-                                aria-selected="true">Limit</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" data-toggle="pill" href="#pills-market" role="tab"
-                                aria-selected="false">Market</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" data-toggle="pill" href="#pills-stop-limit" role="tab"
-                                aria-selected="false">Stop
-                                Limit</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" data-toggle="pill" href="#pills-stop-market" role="tab"
-                                aria-selected="false">Stop
-                                Market</a>
-                        </li>
-                    </ul>
-                    <div class="tab-content">
-                        <div class="tab-pane fade show active" id="pills-trade-limit" role="tabpanel">
-
-                            <div class="d-flex justify-content-between">
-                                {{-- BUY --}}
-                                <div class="market-trade-buy" style="max-width: 48%">
-                                    <form method="POST" action="{{ route('bot.place_trade') }}" id="buyForm">
-                                        @csrf
-                                        <div class="input-group mb-2">
-                                            <input type="number" name="amount" class="form-control" id="buyAmount"
-                                                placeholder="Amount to buy" min="0" step="0.01" required />
-                                            <input type="hidden" name="trade_type" value="buy" required>
-                                            <select class="form-select" name="crypto_category" id="buyPair">
-                                                <option value="BTC" selected>USDT/BTC</option>
-                                                <option value="ETH">USDT/ETH</option>
-                                                <option value="BNB">USDT/BNB</option>
-                                                <option value="XRP">USDT/XRP</option>
-                                                <option value="SOL">USDT/SOL</option>
-                                                <option value="ADA">USDT/ADA</option>
-                                                <option value="DOT">USDT/DOT</option>
-                                                <option value="DOGE">USDT/DOGE</option>
-                                                <option value="LTC">USDT/LTC</option>
-                                            </select>
-                                        </div>
-
-                                        <ul class="market-trade-list" id="buyPercentages">
-                                            <li><a href="#" data-percent="5">5%</a></li>
-                                            <li><a href="#" data-percent="10">10%</a></li>
-                                            <li><a href="#" data-percent="15">15%</a></li>
-                                            <li><a href="#" data-percent="20">20%</a></li>
-                                            <li><a href="#" data-percent="25">25%</a></li>
-                                            <li><a href="#" data-percent="30">30%</a></li>
-                                            <li><a href="#" data-percent="40">40%</a></li>
-                                            <li><a href="#" data-percent="50">50%</a></li>
-                                            <li><a href="#" data-percent="75">75%</a></li>
-                                            <li><a href="#" data-percent="90">90%</a></li>
-                                            <li><a href="#" data-percent="100">100%</a></li>
-                                        </ul>
-
-                                        <button type="submit" class="btn buy">Buy</button>
-                                    </form>
-                                </div>
-
-                                {{-- SELL --}}
-                                <div class="market-trade-sell" style="max-width: 48%">
-                                    <form method="POST" action="{{ route('bot.place_trade') }}" id="sellForm">
-                                        @csrf
-                                        <div class="input-group mb-2">
-                                            <input type="number" name="amount" class="form-control"
-                                                id="sellAmount" placeholder="Amount to sell" min="0"
-                                                step="0.01" required />
-                                            <input type="hidden" name="trade_type" value="sell" required>
-                                            <select name="crypto_category" class="form-select" id="sellPair">
-                                                <option value="BTC" selected>USDT/BTC</option>
-                                                <option value="ETH">USDT/ETH</option>
-                                                <option value="BNB">USDT/BNB</option>
-                                                <option value="XRP">USDT/XRP</option>
-                                                <option value="SOL">USDT/SOL</option>
-                                                <option value="ADA">USDT/ADA</option>
-                                                <option value="DOT">USDT/DOT</option>
-                                                <option value="DOGE">USDT/DOGE</option>
-                                                <option value="LTC">USDT/LTC</option>
-                                            </select>
-
-                                        </div>
-
-                                        <ul class="market-trade-list" id="sellPercentages">
-                                            <li><a href="#" data-percent="5">5%</a></li>
-                                            <li><a href="#" data-percent="10">10%</a></li>
-                                            <li><a href="#" data-percent="15">15%</a></li>
-                                            <li><a href="#" data-percent="20">20%</a></li>
-                                            <li><a href="#" data-percent="25">25%</a></li>
-                                            <li><a href="#" data-percent="30">30%</a></li>
-                                            <li><a href="#" data-percent="40">40%</a></li>
-                                            <li><a href="#" data-percent="50">50%</a></li>
-                                            <li><a href="#" data-percent="75">75%</a></li>
-                                            <li><a href="#" data-percent="90">90%</a></li>
-                                            <li><a href="#" data-percent="100">100%</a></li>
-                                        </ul>
-
-                                        <button type="submit" class="btn sell">Sell</button>
-                                    </form>
-                                </div>
-
+                <!-- Dashboard Cards -->
+                <div class="row mb-4">
+                    <div class="col-md-4">
+                        <div class="card text-center dashboard-card">
+                            <div class="card-body">
+                                <h5 class="card-title"><i class="icon ion-md-wallet"></i> Account Balance</h5>
+                                <p class="card-text text-success">{{ number_format($user->balance ?? 0, 2) }} USDT</p>
                             </div>
-
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card text-center dashboard-card">
+                            <div class="card-body">
+                                <h5 class="card-title"><i class="icon ion-md-trending-up"></i> Lifetime P&L</h5>
+                                <p class="card-text {{ $lifetime_pnl >= 0 ? 'text-success' : 'text-danger' }}">{{ number_format($lifetime_pnl, 2) }} USDT</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card text-center dashboard-card">
+                            <div class="card-body">
+                                <h5 class="card-title"><i class="icon ion-md-cash"></i> Total Withdrawals</h5>
+                                <p class="card-text text-info">{{ number_format($totalWithdraws, 2) }} USDT</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                        <div class="card text-center dashboard-card">
+                            <div class="card-body">
+                                <h5 class="card-title"><i class="icon ion-md-business"></i> Invested Capital</h5>
+                                <p class="card-text text-primary">{{ number_format($investedCapital, 2) }} USDT</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card text-center dashboard-card">
+                            <div class="card-body">
+                                <h5 class="card-title"><i class="icon ion-md-people"></i> Referral Earnings</h5>
+                                <p class="card-text text-warning">{{ number_format($totalReferralEarning, 2) }} USDT</p>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                {{-- END OF TRADING ORDERS --}}
+                <!-- User Details Section -->
+                <div class="card mb-4 dashboard-card">
+                    <div class="card-header bg-primary text-white">
+                        <h5><i class="icon ion-md-person"></i> User Details</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p><i class="icon ion-md-contact text-primary"></i> <strong>Username:</strong> {{ Auth::user()->username ?? 'Guest' }}</p>
+                                <p><i class="icon ion-md-fingerprint text-primary"></i> <strong>User ID:</strong> {{ Auth::user()->unique_id ?? 'NULL' }}</p>
+                            </div>
+                            <div class="col-md-6">
+                                <p><i class="icon ion-md-mail text-primary"></i> <strong>Email:</strong> {{ Auth::user()->email ?? 'no-email' }}</p>
+                                <p><i class="icon ion-md-checkmark-circle {{ Auth::user()->status == 'active' ? 'text-success' : 'text-warning' }}"></i> <strong>Status:</strong> {{ Auth::user()->status ?? 'blocked' }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
+                <!-- Recent Activities -->
+                <div class="row mb-4">
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5>Recent Transactions</h5>
+                            </div>
+                            <div class="card-body">
+                                @forelse($transactions as $transaction)
+                                    <div class="mb-2">
+                                        <small>{{ $transaction->created_at->format('d-m-Y') }} - {{ number_format($transaction->amount, 2) }} USDT</small>
+                                        <br>
+                                        <small class="text-muted">{{ $transaction->description }}</small>
+                                    </div>
+                                @empty
+                                    <small class="text-muted">No recent transactions</small>
+                                @endforelse
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5>Recent Withdrawals</h5>
+                            </div>
+                            <div class="card-body">
+                                @forelse($withdrawals as $withdrawal)
+                                    <div class="mb-2">
+                                        <small>{{ $withdrawal->created_at ? $withdrawal->created_at->format('d-m-Y') : '-' }} - {{ number_format($withdrawal->amount, 2) }} USDT</small>
+                                        <br>
+                                        <small class="text-muted">{{ ucfirst($withdrawal->status) }}</small>
+                                    </div>
+                                @empty
+                                    <small class="text-muted">No recent withdrawals</small>
+                                @endforelse
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5>Recent Deposits</h5>
+                            </div>
+                            <div class="card-body">
+                                @forelse($deposits as $deposit)
+                                    <div class="mb-2">
+                                        <small>{{ $deposit->created_at ? $deposit->created_at->format('d-m-Y') : '-' }} - {{ number_format($deposit->price_amount, 2) }} {{ strtoupper($deposit->price_currency) }}</small>
+                                        <br>
+                                        <small class="text-muted">{{ ucfirst($deposit->payment_status) }}</small>
+                                    </div>
+                                @empty
+                                    <small class="text-muted">No recent deposits</small>
+                                @endforelse
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
 
@@ -378,84 +303,7 @@
         });
     </script>
 
-    <script>
-        axios.defaults.headers.common['X-CSRF-TOKEN'] = document.querySelector('meta[name="csrf-token"]').getAttribute(
-            'content');
-    </script>
 
-    <!-- Include SweetAlert2 for toast notifications -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-
-            const userBalance = {{ $user->balance }}; // Authenticated user balance from controller
-
-            function setupPercentButtons(formId, amountInputId, percentageListId) {
-                const form = document.getElementById(formId);
-                const amountInput = document.getElementById(amountInputId);
-                const percentageLinks = document.querySelectorAll(`#${percentageListId} a`);
-
-                // Percentage buttons click
-                percentageLinks.forEach(link => {
-                    link.addEventListener('click', function(e) {
-                        e.preventDefault();
-                        const percent = parseFloat(this.dataset.percent);
-                        const calculatedAmount = (userBalance * percent / 100).toFixed(2);
-                        amountInput.value = calculatedAmount;
-                    });
-                });
-
-                // AJAX form submission
-                form.addEventListener('submit', function(e) {
-                    e.preventDefault();
-
-                    const formData = new FormData(form);
-
-                    axios.post(form.action, formData)
-                        .then(res => {
-                            Swal.fire({
-                                icon: res.data.success ? 'success' : 'error',
-                                title: res.data.message || 'Trade placed!',
-                                toast: true,
-                                position: 'top-end',
-                                timer: 3000,
-                                showConfirmButton: false
-                            });
-
-                            // Optionally reset the input after success
-                            if (res.data.success) {
-                                amountInput.value = '';
-                            }
-                        })
-                        .catch(err => {
-                            let message = 'An error occurred';
-                            if (err.response && err.response.data && err.response.data.errors) {
-                                message = Object.values(err.response.data.errors).flat().join(', ');
-                            }
-                            Swal.fire({
-                                icon: 'error',
-                                title: message,
-                                toast: true,
-                                position: 'top-end',
-                                timer: 3000,
-                                showConfirmButton: false
-                            });
-                        });
-                });
-            }
-
-            // Setup Buy and Sell forms
-            setupPercentButtons('buyForm', 'buyAmount', 'buyPercentages');
-            setupPercentButtons('sellForm', 'sellAmount', 'sellPercentages');
-
-            // Setup Modal Buy and Sell forms
-            setupPercentButtons('modalBuyForm', 'modalBuyAmount', 'modalBuyPercentages');
-            setupPercentButtons('modalSellForm', 'modalSellAmount', 'modalSellPercentages');
-
-        });
-    </script>
 
     <script>
         // Hide preloader when page is fully loaded
@@ -493,92 +341,10 @@
         document.addEventListener("dragstart", function(e) {
             e.preventDefault();
         });
+        
     </script>
 
-    <!-- AI Trading Modal -->
-    {{-- <div class="modal fade" id="aiTradingModal" tabindex="-1" role="dialog" aria-labelledby="aiTradingModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="aiTradingModalLabel">AI Trading</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="market-trade">
-                    <div class="d-flex justify-content-between">
-
-                    <div class="market-trade-buy" style="max-width: 48%">
-                        <form method="POST" action="{{ route('bot.place_trade') }}" id="modalBuyForm">
-                            @csrf
-                            <div class="input-group mb-2">
-                                <input type="number" name="amount" class="form-control" id="modalBuyAmount"
-                                    placeholder="Amount to buy" min="0" step="0.01" required />
-                                <input type="hidden" name="trade_type" value="buy" required>
-                                <select class="form-select" name="crypto_category" id="modalBuyPair">
-                                    <option value="BTC" selected>USDT/BTC</option>
-                                    <option value="ETH">USDT/ETH</option>
-                                    <option value="BNB">USDT/BNB</option>
-                                    <option value="XRP">USDT/XRP</option>
-                                    <option value="SOL">USDT/SOL</option>
-                                    <option value="ADA">USDT/ADA</option>
-                                    <option value="DOT">USDT/DOT</option>
-                                    <option value="DOGE">USDT/DOGE</option>
-                                    <option value="LTC">USDT/LTC</option>
-                                </select>
-                            </div>
-
-                            <ul class="market-trade-list" id="modalBuyPercentages">
-                                <li><a href="#" data-percent="25">25%</a></li>
-                                <li><a href="#" data-percent="50">50%</a></li>
-                                <li><a href="#" data-percent="75">75%</a></li>
-                                <li><a href="#" data-percent="100">100%</a></li>
-                            </ul>
-
-                            <button type="submit" class="btn buy">Buy</button>
-                        </form>
-                    </div>
-
-
-                    <div class="market-trade-sell" style="max-width: 48%">
-                        <form method="POST" action="{{ route('bot.place_trade') }}" id="modalSellForm">
-                            @csrf
-                            <div class="input-group mb-2">
-                                <input type="number" name="amount" class="form-control"
-                                    id="modalSellAmount" placeholder="Amount to sell" min="0"
-                                    step="0.01" required />
-                                <input type="hidden" name="trade_type" value="sell" required>
-                                <select name="crypto_category" class="form-select" id="modalSellPair">
-                                    <option value="BTC" selected>USDT/BTC</option>
-                                    <option value="ETH">USDT/ETH</option>
-                                    <option value="BNB">USDT/BNB</option>
-                                    <option value="XRP">USDT/XRP</option>
-                                    <option value="SOL">USDT/SOL</option>
-                                    <option value="ADA">USDT/ADA</option>
-                                    <option value="DOT">USDT/DOT</option>
-                                    <option value="DOGE">USDT/DOGE</option>
-                                    <option value="LTC">USDT/LTC</option>
-                                </select>
-
-                            </div>
-
-                            <ul class="market-trade-list" id="modalSellPercentages">
-                                <li><a href="#" data-percent="25">25%</a></li>
-                                <li><a href="#" data-percent="50">50%</a></li>
-                                <li><a href="#" data-percent="75">75%</a></li>
-                                <li><a href="#" data-percent="100">100%</a></li>
-                            </ul>
-
-                            <button type="submit" class="btn sell">Sell</button>
-                        </form>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div>
-</div> --}}
+   
 
     @include('user.common.navbar')
 

@@ -69,7 +69,63 @@ class DashboardController extends Controller
             ->orderBy('created_at', 'desc')
             ->get();
 
-        return view('user.pages.index', compact('user', 'activeUserInvestment', 'allUserInvestments'));
+        // Fetch recent transactions
+        $transactions = Transaction::where('user_id', $user->id)
+            ->orderBy('created_at', 'desc')
+            ->limit(5)
+            ->get();
+
+        // Fetch recent withdrawals
+        $withdrawals = Withdrawal::where('user_id', $user->id)
+            ->orderBy('created_at', 'desc')
+            ->limit(5)
+            ->get();
+
+        // Fetch recent deposits
+        $deposits = Payment::where('user_id', $user->id)
+            ->orderBy('created_at', 'desc')
+            ->limit(5)
+            ->get();
+
+        // Statistics
+        $totalReferralEarning = Transaction::where('user_id', $user->id)
+            ->where('type', 'credit')
+            ->where(function ($query) {
+                $query
+                    ->where('description', 'like', '%Referral Commission%')
+                    ->orWhere('description', 'like', '%commission from%');
+            })
+            ->sum('amount');
+
+        $investedCapital = UserInvestment::where('user_id', $user->id)
+            ->sum('amount');
+
+        $total_gains = UserInvestment::where('user_id', $user->id)
+            ->where('investment_result', 'gain')
+            ->sum('daily_profit_amount');
+
+        $total_losses = UserInvestment::where('user_id', $user->id)
+            ->where('investment_result', 'lose')
+            ->sum('amount');
+
+        $lifetime_pnl = $total_gains - $total_losses;
+
+        $totalWithdraws = Withdrawal::where('user_id', $user->id)
+            ->where('status', 'complete')
+            ->sum('amount');
+
+        return view('user.pages.index', compact(
+            'user',
+            'activeUserInvestment',
+            'allUserInvestments',
+            'transactions',
+            'withdrawals',
+            'deposits',
+            'totalReferralEarning',
+            'investedCapital',
+            'lifetime_pnl',
+            'totalWithdraws'
+        ));
     }
 
     public function trading()
@@ -152,7 +208,10 @@ class DashboardController extends Controller
             'lifetime_pnl',
             'totalWithdraws',
             'payments'
+
         ));
+
+        
     }
 
     public function mywallet()

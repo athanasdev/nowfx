@@ -2645,6 +2645,56 @@ body {
     border-top: 5px solid #007bff;
 }
 
+/* Dashboard Card Styles */
+.dashboard-card {
+    border: 1px solid #e0e3eb;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+}
+
+.dashboard-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    border-color: #007bff;
+}
+
+.dashboard-card .card-title {
+    color: #18214d;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.dashboard-card .card-title i {
+    margin-right: 8px;
+    color: #007bff;
+}
+
+.dashboard-card .card-text {
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+/* Dark mode dashboard cards */
+#dark .dashboard-card {
+    background: linear-gradient(135deg, #1e222d 0%, #2a2e39 100%);
+    border-color: #2a2e39;
+}
+
+#dark .dashboard-card:hover {
+    border-color: #007bff;
+    box-shadow: 0 8px 25px rgba(0,123,255,0.3);
+}
+
+#dark .dashboard-card .card-title {
+    color: #ffffff;
+}
+
+#dark .dashboard-card .card-title i {
+    color: #007bff;
+}
+
 
 
 

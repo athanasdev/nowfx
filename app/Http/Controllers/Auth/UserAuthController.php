@@ -139,12 +139,12 @@ class UserAuthController extends Controller
         if ($request->ajax()) {
             return response()->json([
                 'success' => false,
-                'message' => 'The provided credentials do not match our records.'
+                'message' => 'Invalid Username or Password ..!'
             ], 422);
         }
 
         return back()->withErrors([
-            'username' => 'The provided credentials do not match our records.',
+            'username' => 'Invalid Username or Password ..!',
         ])->onlyInput('username');
 
 
