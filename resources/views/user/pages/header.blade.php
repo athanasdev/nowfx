@@ -2,8 +2,14 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <nav class="navbar navbar-expand-lg">
-        <a class="navbar-brand" href="{{ route('dashboard') }}"><img src="/client/assets/img/logo-light.png"
-                alt="logo"></a>
+        {{-- <a class="navbar-brand" href="{{ route('dashboard') }}">
+            <img src="/client/assets/img/logo-light.png" alt="logo"></a> --}}
+        {{-- <a href="{{ route('dashboard') }}" class="navbar-brand">{{ config("app.name") }} </a> --}}
+        <a href="{{ route('dashboard') }}" class="navbar-brand">
+            <i class="icon ion-md-stats text-danger"></i>
+            {{ config('app.name') }}
+        </a>
+
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#headerMenu"
             aria-controls="headerMenu" aria-expanded="false" aria-label="Toggle navigation">
             <i class="icon ion-md-menu"></i>
@@ -165,8 +171,7 @@
 
                                     <li class="nav-item">
                                         @auth
-                                            <form method="POST" action="{{ route('user.logout') }}"
-                                                class="logout-form-inline">
+                                            <form method="POST" action="{{ route('user.logout') }}" class="logout-form-inline">
                                                 @csrf
                                                 <button type="submit" class="nav-link red"
                                                     style="background:none; border:none; cursor:pointer;">
