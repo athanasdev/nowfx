@@ -18,9 +18,9 @@
 <body id="dark">
 
     <!-- Preloader -->
-    <div class="preloader">
+    {{-- <div class="preloader">
         <div class="spinner"></div>
-    </div>
+    </div> --}}
 
     @include('user.pages.header');
 
