@@ -89,7 +89,7 @@
 
 
                 {{--  markerts code list --}}
-                <div class="row">
+                <div class="row mx-auto">
                       <div class="col-md-12">
                     <div class="markets-pair-list">
                         <ul class="nav nav-pills" id="pills-tab" role="tablist">
@@ -903,10 +903,7 @@
                                 </table>
                             </div>
                         </div>
-                        <div class="text-center">
-                            <a href="#" class="load-more btn">Load More <i
-                                    class="icon ion-md-arrow-down"></i></a>
-                        </div>
+                        
                     </div>
                 </div>
                 </div>
