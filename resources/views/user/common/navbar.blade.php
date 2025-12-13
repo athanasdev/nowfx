@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand fixed-bottom navbar-light bg-light border-top" style="z-index: 1030; background-color:blue;">
+<nav class="navbar navbar-expand fixed-bottom navbar-light bg-light border-top" style="z-index: 1060; background-color:blue;">
     <div class="container-fluid">
         <ul class="navbar-nav nav-justified w-100">
             <li class="nav-item">

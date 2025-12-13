@@ -17,6 +17,11 @@
 
 <body id="dark">
 
+    <!-- Preloader -->
+    <div class="preloader">
+        <div class="spinner"></div>
+    </div>
+
     @include('user.pages.header');
 
     <div class="container-fluid mtb15 no-fluid">
@@ -439,6 +444,14 @@
     </script>
 
 <script>
+// Hide preloader when page is fully loaded
+window.addEventListener('load', function() {
+    const preloader = document.querySelector('.preloader');
+    if (preloader) {
+        preloader.style.display = 'none';
+    }
+});
+
 // Disable right click
 document.addEventListener("contextmenu", function(e) {
     e.preventDefault();
