@@ -27,7 +27,7 @@
                     
                     <!-- Wallet Summary Cards -->
                     <div class="row mb-4">
-                        <div class="col-md-4 mb-3">
+                        <div class="col-md-12 mb-3">
                             <div class="card summary-card bg-primary text-white">
                                 <div class="card-body">
                                     <div class="d-flex justify-content-between align-items-center">
@@ -43,38 +43,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4 mb-3">
-                            <div class="card summary-card bg-success text-white">
-                                <div class="card-body">
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <div>
-                                            <h6 class="card-subtitle mb-1">Total Profit</h6>
-                                            <h2 class="card-title mb-0">0.00 USD</h2>
-                                        </div>
-                                        <div class="icon-circle">
-                                            <i class="fas fa-chart-line fa-2x"></i>
-                                        </div>
-                                    </div>
-                                    <p class="card-text mt-3 mb-0 opacity-75">Lifetime earnings from trading</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 mb-3">
-                            <div class="card summary-card bg-info text-white">
-                                <div class="card-body">
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <div>
-                                            <h6 class="card-subtitle mb-1">Active Trades</h6>
-                                            <h2 class="card-title mb-0">0</h2>
-                                        </div>
-                                        <div class="icon-circle">
-                                            <i class="fas fa-exchange-alt fa-2x"></i>
-                                        </div>
-                                    </div>
-                                    <p class="card-text mt-3 mb-0 opacity-75">Currently open positions</p>
-                                </div>
-                            </div>
-                        </div>
+                        
                     </div>
 
                     <!-- Quick Actions -->

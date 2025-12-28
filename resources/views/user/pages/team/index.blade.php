@@ -9,7 +9,7 @@
     <title>Cex77</title>
     <link rel="icon" href="/client/assets/img/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="/client/assets/css/style.css">
-   
+
 
 </head>
 
@@ -53,33 +53,43 @@
                                                     <div class="card-body">
                                                         <h5 class="card-title">Teams</h5>
                                                         <div class="row wallet-address">
-                                                            <div class="col-md-8">
-                                                                <p>When friend A registers with your registration link,
-                                                                    he becomes your first-level member. You can get 12%
-                                                                    commission from each of his trade services fees
+                                                            <div class="col-md-10 mx-auto">
+                                                                <p>
+                                                                    How Our Referral System Works
+                                                                    Level 1 - Direct Referrals (12% Commission)
+                                                                    When someone joins using your referral link, they
+                                                                    become your Level 1 member
 
-                                                                    When friend B registers with friend A's Registration
-                                                                    link, he becomes friend A's first-level member and
-                                                                    your second-level member at the same time. So every
-                                                                    time friend B trades, friend A can earn 12%
-                                                                    commission for each transaction service fee. You
-                                                                    will also earn 6% commission on each of his trade
-                                                                    service fees.
+                                                                    You earn 12% commission from all their trading fees
 
-                                                                    When Friend C uses the friend B Registration linkto
-                                                                    register as a first-level member of friend B, a
-                                                                    second-level member of friend A, and also your
-                                                                    third-level member. Friend B can earn 12% commission
-                                                                    per trade, friend A can earn 6% commission per trade
-                                                                    service fee, and you can earn 3% commission from his
-                                                                    each trade service fee.</p>
-                                                                    
-                                                                <h3>Invitation code: </h3>
+                                                                    Level 2 - Indirect Referrals (6% Commission)
+                                                                    When your Level 1 member refers someone new, that
+                                                                    person becomes:
+
+                                                                    Level 1 member for your direct referral
+
+                                                                    Level 2 member for you
+
+                                                                    You earn 6% commission from all their trading fees
+
+                                                                    Level 3 - Extended Network (3% Commission)
+                                                                    When your Level 2 member refers someone new, that
+                                                                    person becomes:
+
+                                                                    Level 1 member for the referrer
+
+                                                                    Level 2 member for your direct referral
+
+                                                                    Level 3 member for you
+
+                                                                    You earn 3% commission from all their trading fees
+                                                                </p>
+
+                                                                <h3>Referral code: </h3>
                                                                 <div class="input-group">
                                                                     <input type="text" class="form-control"
                                                                         id="referralLinkInput"
-                                                                        value="{{ $user->referral_code }}"
-                                                                        readonly>
+                                                                        value="{{ $user->referral_code }}" readonly>
                                                                     <div class="input-group-append">
                                                                         <button class="btn btn-primary" type="button"
                                                                             onclick="copyReferralLink()">COPY</button>
@@ -89,66 +99,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                {{-- MY TEAMS --}}
-                                                {{-- <div class="card">
-                                                    <div class="card-body">
-                                                        <h5 class="card-title">My Teams</h5>
-                                                        <div class="wallet-history">
-                                                            <table class="table">
-                                                                <thead>
-                                                                    <tr>
-                                                                        <th>No.</th>
-                                                                        <th>Date</th>
-                                                                        <th>Status</th>
-                                                                        <th>Amount</th>
-                                                                    </tr>
-                                                                </thead>
-                                                                <tbody>
-                                                                    <tr>
-                                                                        <td>1</td>
-                                                                        <td>25-04-2019</td>
-                                                                        <td><i
-                                                                                class="icon ion-md-checkmark-circle-outline green"></i>
-                                                                        </td>
-                                                                        <td>4.5454334</td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>2</td>
-                                                                        <td>25-05-2019</td>
-                                                                        <td><i
-                                                                                class="icon ion-md-checkmark-circle-outline green"></i>
-                                                                        </td>
-                                                                        <td>0.5484468</td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>3</td>
-                                                                        <td>25-06-2019</td>
-                                                                        <td><i
-                                                                                class="icon ion-md-close-circle-outline red"></i>
-                                                                        </td>
-                                                                        <td>2.5454545</td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>4</td>
-                                                                        <td>25-07-2019</td>
-                                                                        <td><i
-                                                                                class="icon ion-md-checkmark-circle-outline green"></i>
-                                                                        </td>
-                                                                        <td>1.45894147</td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>3</td>
-                                                                        <td>25-08-2019</td>
-                                                                        <td><i
-                                                                                class="icon ion-md-close-circle-outline red"></i>
-                                                                        </td>
-                                                                        <td>2.5454545</td>
-                                                                    </tr>
-                                                                </tbody>
-                                                            </table>
-                                                        </div>
-                                                    </div>
-                                                </div> --}}
+                                                
 
                                                 <div class="card">
                                                     <div class="card-body">
@@ -159,7 +110,7 @@
                                                                     <tr>
                                                                         <th>No.</th>
                                                                         <th>Level</th>
-                                                                        <th>Members</th>
+                                                                        <th>Total Members</th>
                                                                         {{-- <th>Deposits</th> --}}
                                                                         <th>Commissions</th>
                                                                     </tr>
@@ -211,8 +162,8 @@
                                                                     <tr>
                                                                         <th style="text-align:center; width:5%;">#</th>
                                                                         <th>Username</th>
-                                                                        <th style="text-align:center;">Level</th>
-                                                                        <th style="text-align:right;">Balance (USDT)
+                                                                        <th style="text-align:center;">Level(n)</th>
+                                                                        <th style="text-align:right;">All Balance (USDT)
                                                                         </th>
                                                                     </tr>
                                                                 </thead>
@@ -340,7 +291,7 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-   <script>
+    <script>
         document.addEventListener('DOMContentLoaded', function() {
             @if (session('success'))
                 Swal.fire({
@@ -379,7 +330,7 @@
         });
     </script>
 
-@include('user.common.navbar')
+    @include('user.common.navbar')
 
 </body>
 
