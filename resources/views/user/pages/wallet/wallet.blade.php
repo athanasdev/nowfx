@@ -1,1177 +1,172 @@
 <!DOCTYPE html>
 <html lang="en">
-
-
-<!-- Mirrored from crypo-laravel-live.netlify.app/wallet/ by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 26 Feb 2023 05:56:03 GMT -->
-<!-- Added by HTTrack -->
-<meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Cex77</title>
+    <title>Cex77 - Wallet</title>
     <link rel="icon" href="/client/assets/img/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="/client/assets/css/style.css">
-   
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
 <body id="dark">
-    @include('user.pages.header');
+    @include('user.pages.header')
 
     <div class="settings mtb15">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-12 col-lg-3">
-                    <div class="nav flex-column nav-pills settings-nav" id="v-pills-tab" role="tablist"
-                        aria-orientation="vertical">
-                        <a class="nav-link active" id="settings-wallet-tab" data-toggle="pill" href="#settings-wallet"
-                            role="tab" aria-controls="settings-wallet" aria-selected="false"><i
-                                class="icon ion-md-wallet"></i> Wallet</a>
+                <div class="col-12">
+                    <!-- Page Header -->
+                    <div class="page-header mb-4">
+                        <h1 class="page-title">
+                            <i class="icon ion-md-wallet me-2"></i>Wallet Dashboard
+                        </h1>
+                        <p class="page-subtitle text-muted">Manage your funds and transactions</p>
                     </div>
-                </div>
-                <div class="col-md-12 col-lg-9">
-                    <div class="tab-content" id="v-pills-tabContent">
-                        <div class="tab-pane fade" id="settings-profile" role="tabpanel"
-                            aria-labelledby="settings-profile-tab">
-                            <div class="card">
+                    
+                    <!-- Wallet Summary Cards -->
+                    <div class="row mb-4">
+                        <div class="col-md-4 mb-3">
+                            <div class="card summary-card bg-primary text-white">
                                 <div class="card-body">
-                                    <h5 class="card-title">General Information</h5>
-                                    <div class="settings-profile">
-                                        <form action="#">
-                                            <img src="/client/assets/img/avatar.svg" alt="avatar">
-                                            <div class="custom-file">
-                                                <input type="file" class="custom-file-input" id="fileUpload"
-                                                    required />
-                                                <label class="custom-file-label" for="fileUpload">Choose avatar</label>
-                                            </div>
-                                            <div class="form-row mt-4">
-                                                <div class="col-md-6">
-                                                    <label for="formFirst">First name</label>
-                                                    <input id="formFirst" type="text" class="form-control"
-                                                        placeholder="First name">
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <label for="formLast">Last name</label>
-                                                    <input id="formLast" type="text" class="form-control"
-                                                        placeholder="Last name">
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <label for="emailAddress">Email</label>
-                                                    <input id="emailAddress" type="text" class="form-control"
-                                                        placeholder="Enter your email">
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <label for="phoneNumber">Phone</label>
-                                                    <input id="phoneNumber" type="text" class="form-control"
-                                                        placeholder="Enter phone number">
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <label for="selectLanguage">Language</label>
-                                                    <select id="selectLanguage" class="custom-select">
-                                                        <option selected>English</option>
-                                                        <option>Mandarin Chinese</option>
-                                                        <option>Spanish</option>
-                                                        <option>Arabic</option>
-                                                        <option>Russian</option>
-                                                    </select>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <label for="selectCurrency">Currency</label>
-                                                    <select id="selectCurrency" class="custom-select">
-                                                        <option selected>USD</option>
-                                                        <option>EUR</option>
-                                                        <option>GBP</option>
-                                                        <option>CHF</option>
-                                                    </select>
-                                                </div>
-                                                <div class="col-md-12">
-                                                    <input type="submit" value="Update">
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="tab-pane fade show active" id="settings-wallet" role="tabpanel"
-                            aria-labelledby="settings-wallet-tab">
-                            <div class="wallet">
-                                <div class="row">
-                                    <div class="col-md-12 col-lg-4">
-                                        <div class="nav flex-column nav-pills" role="tablist"
-                                            aria-orientation="vertical">
-                                            <a class="nav-link d-flex justify-content-between align-items-center active"
-                                                data-toggle="pill" href="#coinBTC" role="tab" aria-selected="true">
-                                                <div class="d-flex">
-                                                    <img src="/client/assets/img/icon/18.png" alt="btc">
-                                                    <div>
-                                                        <h2>BTC</h2>
-                                                        <p>Bitcoin</p>
-                                                    </div>
-                                                </div>
-                                                <div>
-                                                    <h3>4.5484254</h3>
-                                                    <p class="text-right"><i class="icon ion-md-lock"></i> 0.0000000
-                                                    </p>
-                                                </div>
-                                            </a>
-                                            <a class="nav-link d-flex justify-content-between align-items-center"
-                                                data-toggle="pill" href="#coinBTC" role="tab"
-                                                aria-selected="true">
-                                                <div class="d-flex">
-                                                    <img src="/client/assets/img/icon/1.png" alt="btc">
-                                                    <div>
-                                                        <h2>ETH</h2>
-                                                        <p>Ethereum</p>
-                                                    </div>
-                                                </div>
-                                                <div>
-                                                    <h3>13.454845</h3>
-                                                    <p class="text-right"><i class="icon ion-md-lock"></i> 0.0000000
-                                                    </p>
-                                                </div>
-                                            </a>
-                                            <a class="nav-link d-flex justify-content-between align-items-center"
-                                                data-toggle="pill" href="#coinBTC" role="tab"
-                                                aria-selected="true">
-                                                <div class="d-flex">
-                                                    <img src="/client/assets/img/icon/9.png" alt="btc">
-                                                    <div>
-                                                        <h2>BNB</h2>
-                                                        <p>Binance</p>
-                                                    </div>
-                                                </div>
-                                                <div>
-                                                    <h3>35.4842458</h3>
-                                                    <p class="text-right"><i class="icon ion-md-lock"></i> 0.0000000
-                                                    </p>
-                                                </div>
-                                            </a>
-                                            <a class="nav-link d-flex justify-content-between align-items-center"
-                                                data-toggle="pill" href="#coinBTC" role="tab"
-                                                aria-selected="true">
-                                                <div class="d-flex">
-                                                    <img src="/client/assets/img/icon/6.png" alt="btc">
-                                                    <div>
-                                                        <h2>TRX</h2>
-                                                        <p>Tron</p>
-                                                    </div>
-                                                </div>
-                                                <div>
-                                                    <h3>4.458941</h3>
-                                                    <p class="text-right"><i class="icon ion-md-lock"></i> 0.0000000
-                                                    </p>
-                                                </div>
-                                            </a>
-                                            <a class="nav-link d-flex justify-content-between align-items-center"
-                                                data-toggle="pill" href="#coinBTC" role="tab"
-                                                aria-selected="true">
-                                                <div class="d-flex">
-                                                    <img src="/client/assets/img/icon/2.png" alt="btc">
-                                                    <div>
-                                                        <h2>EOS</h2>
-                                                        <p>Eosio</p>
-                                                    </div>
-                                                </div>
-                                                <div>
-                                                    <h3>33.478951</h3>
-                                                    <p class="text-right"><i class="icon ion-md-lock"></i> 0.0000000
-                                                    </p>
-                                                </div>
-                                            </a>
-                                            <a class="nav-link d-flex justify-content-between align-items-center"
-                                                data-toggle="pill" href="#coinBTC" role="tab"
-                                                aria-selected="true">
-                                                <div class="d-flex">
-                                                    <img src="/client/assets/img/icon/7.png" alt="btc">
-                                                    <div>
-                                                        <h2>XMR</h2>
-                                                        <p>Monero</p>
-                                                    </div>
-                                                </div>
-                                                <div>
-                                                    <h3>99.465975</h3>
-                                                    <p class="text-right"><i class="icon ion-md-lock"></i> 0.0000000
-                                                    </p>
-                                                </div>
-                                            </a>
-                                            <a class="nav-link d-flex justify-content-between align-items-center"
-                                                data-toggle="pill" href="#coinBTC" role="tab"
-                                                aria-selected="true">
-                                                <div class="d-flex">
-                                                    <img src="/client/assets/img/icon/4.png" alt="btc">
-                                                    <div>
-                                                        <h2>KCS</h2>
-                                                        <p>Kstarcoin</p>
-                                                    </div>
-                                                </div>
-                                                <div>
-                                                    <h3>114.57564</h3>
-                                                    <p class="text-right"><i class="icon ion-md-lock"></i> 0.0000000
-                                                    </p>
-                                                </div>
-                                            </a>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <h6 class="card-subtitle mb-1">Total Balance</h6>
+                                            <h2 class="card-title mb-0">{{ number_format($user->balance, 2) }} USD</h2>
+                                        </div>
+                                        <div class="icon-circle">
+                                            <i class="fas fa-wallet fa-2x"></i>
                                         </div>
                                     </div>
-                                    <div class="col-md-12 col-lg-8">
-                                        <div class="tab-content">
-                                            <div class="tab-pane fade show active" id="coinBTC" role="tabpanel">
-                                                <div class="card">
-                                                    <div class="card-body">
-                                                        <h5 class="card-title">Balances</h5>
-                                                        <ul>
-                                                            <li
-                                                                class="d-flex justify-content-between align-items-center">
-                                                                <div class="d-flex align-items-center">
-                                                                    <i class="icon ion-md-cash"></i>
-                                                                    <h2>Total Balance</h2>
-                                                                </div>
-                                                                <div>
-                                                                    <h3>{{ $user->balance }} USD</h3>
-                                                                </div>
-                                                            </li>
-
-                                                        </ul>
-
-                                                        <a href="{{ route('deposit.form') }}"
-                                                            class="btn btn-success mr-2">Deposit</a>
-                                                        <a href="{{ route('withdraw') }}"
-                                                            class="btn btn-danger ml-2">Withdraw</a>
-
-                                                    </div>
-                                                </div>
-                                                <div class="card">
-                                                    <div class="card-body">
-                                                        <h5 class="card-title">My withdraw Address</h5>
-                                                        <div class="row wallet-address">
-                                                            <div class="col-md-8">
-                                                                <p>The more you deposit, the more you can earn and
-                                                                    receive rewards</p>
-                                                                <div class="input-group">
-                                                                    <input type="text" class="form-control"
-                                                                        value=`{{ $user->withdrawal_address }}`>
-
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-4">
-                                                                <img src="/client/assets/img/qr-code-light.svg"
-                                                                    alt="qr-code">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="card">
-                                                    {{-- <div class="card-body">
-                                                        <h5 class="card-title">Latest Transactions</h5>
-                                                        <div class="wallet-history">
-                                                            <table class="table">
-                                                                <thead>
-                                                                    <tr>
-                                                                        <th>No.</th>
-                                                                        <th>Date</th>
-                                                                        <th>Status</th>
-                                                                        <th>Amount</th>
-                                                                    </tr>
-                                                                </thead>
-                                                                <tbody>
-                                                                    <tr>
-                                                                        <td>1</td>
-                                                                        <td>25-04-2019</td>
-                                                                        <td><i
-                                                                                class="icon ion-md-checkmark-circle-outline green"></i>
-                                                                        </td>
-                                                                        <td>4.5454334</td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>2</td>
-                                                                        <td>25-05-2019</td>
-                                                                        <td><i
-                                                                                class="icon ion-md-checkmark-circle-outline green"></i>
-                                                                        </td>
-                                                                        <td>0.5484468</td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>3</td>
-                                                                        <td>25-06-2019</td>
-                                                                        <td><i
-                                                                                class="icon ion-md-close-circle-outline red"></i>
-                                                                        </td>
-                                                                        <td>2.5454545</td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>4</td>
-                                                                        <td>25-07-2019</td>
-                                                                        <td><i
-                                                                                class="icon ion-md-checkmark-circle-outline green"></i>
-                                                                        </td>
-                                                                        <td>1.45894147</td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>3</td>
-                                                                        <td>25-08-2019</td>
-                                                                        <td><i
-                                                                                class="icon ion-md-close-circle-outline red"></i>
-                                                                        </td>
-                                                                        <td>2.5454545</td>
-                                                                    </tr>
-                                                                </tbody>
-                                                            </table>
-                                                        </div>
-                                                    </div> --}}
-                                                </div>
-                                            </div>
-                                            <div class="tab-pane fade" id="coinETH" role="tabpanel">
-                                                <div class="card">
-                                                    <div class="card-body">
-                                                        <h5 class="card-title">Balances</h5>
-                                                        <ul>
-                                                            <li
-                                                                class="d-flex justify-content-between align-items-center">
-                                                                <div class="d-flex align-items-center">
-                                                                    <i class="icon ion-md-cash"></i>
-                                                                    <h2>Total Equity</h2>
-                                                                </div>
-                                                                <div>
-                                                                    <h3>4.1542 ETH</h3>
-                                                                </div>
-                                                            </li>
-                                                            <li
-                                                                class="d-flex justify-content-between align-items-center">
-                                                                <div class="d-flex align-items-center">
-                                                                    <i class="icon ion-md-checkmark"></i>
-                                                                    <h2>Available Margin</h2>
-                                                                </div>
-                                                                <div>
-                                                                    <h3>1.334 ETH</h3>
-                                                                </div>
-                                                            </li>
-                                                        </ul>
-
-                                                    </div>
-                                                </div>
-                                                <div class="card">
-                                                    <div class="card-body">
-                                                        <h5 class="card-title">Wallet Deposit Address</h5>
-                                                        <div class="row wallet-address">
-                                                            <div class="col-md-8">
-                                                                <p>Deposits to this address are unlimited. Note that you
-                                                                    may not be able to withdraw all
-                                                                    of your
-                                                                    funds at once if you deposit more than your daily
-                                                                    withdrawal limit.</p>
-                                                                <div class="input-group">
-                                                                    <input type="text" class="form-control"
-                                                                        value="Ad87deD4gEe8dG57Ede4eEg5dREs4d5e8f4e">
-                                                                    <div class="input-group-prepend">
-                                                                        <button class="btn btn-primary">COPY</button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-4">
-                                                                <img src="/client/assets/img/qr-code-light.svg"
-                                                                    alt="qr-code">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="card">
-                                                    {{-- <div class="card-body">
-                                                        <h5 class="card-title">Latest Transactions</h5>
-                                                        <div class="wallet-history">
-                                                            <table class="table">
-                                                                <thead>
-                                                                    <tr>
-                                                                        <th>No.</th>
-                                                                        <th>Date</th>
-                                                                        <th>Status</th>
-                                                                        <th>Amount</th>
-                                                                    </tr>
-                                                                </thead>
-                                                                <tbody>
-                                                                    <tr>
-                                                                        <td>1</td>
-                                                                        <td>25-04-2019</td>
-                                                                        <td><i
-                                                                                class="icon ion-md-checkmark-circle-outline green"></i>
-                                                                        </td>
-                                                                        <td>4.5454334</td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>2</td>
-                                                                        <td>25-05-2019</td>
-                                                                        <td><i
-                                                                                class="icon ion-md-checkmark-circle-outline green"></i>
-                                                                        </td>
-                                                                        <td>0.5484468</td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>3</td>
-                                                                        <td>25-06-2019</td>
-                                                                        <td><i
-                                                                                class="icon ion-md-close-circle-outline red"></i>
-                                                                        </td>
-                                                                        <td>2.5454545</td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>4</td>
-                                                                        <td>25-07-2019</td>
-                                                                        <td><i
-                                                                                class="icon ion-md-checkmark-circle-outline green"></i>
-                                                                        </td>
-                                                                        <td>1.45894147</td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>3</td>
-                                                                        <td>25-08-2019</td>
-                                                                        <td><i
-                                                                                class="icon ion-md-close-circle-outline red"></i>
-                                                                        </td>
-                                                                        <td>2.5454545</td>
-                                                                    </tr>
-                                                                </tbody>
-                                                            </table>
-                                                        </div>
-                                                    </div> --}}
-                                                </div>
-                                            </div>
-                                            <div class="tab-pane fade" id="coinBNB" role="tabpanel">
-                                                <div class="card">
-                                                    <div class="card-body">
-                                                        <h5 class="card-title">Balances</h5>
-                                                        <ul>
-                                                            <li
-                                                                class="d-flex justify-content-between align-items-center">
-                                                                <div class="d-flex align-items-center">
-                                                                    <i class="icon ion-md-cash"></i>
-                                                                    <h2>Total Equity</h2>
-                                                                </div>
-                                                                <div>
-                                                                    <h3>7.342 BNB</h3>
-                                                                </div>
-                                                            </li>
-                                                            <li
-                                                                class="d-flex justify-content-between align-items-center">
-                                                                <div class="d-flex align-items-center">
-                                                                    <i class="icon ion-md-checkmark"></i>
-                                                                    <h2>Available Margin</h2>
-                                                                </div>
-                                                                <div>
-                                                                    <h3>0.332 BNB</h3>
-                                                                </div>
-                                                            </li>
-                                                        </ul>
-                                                        <button class="btn green">Deposit</button>
-                                                        <button class="btn red">Withdraw</button>
-                                                    </div>
-                                                </div>
-                                                <div class="card">
-                                                    <div class="card-body">
-                                                        <h5 class="card-title">Wallet Deposit Address</h5>
-                                                        <div class="row wallet-address">
-                                                            <div class="col-md-8">
-                                                                <p>Deposits to this address are unlimited. Note that you
-                                                                    may not be able to withdraw all
-                                                                    of your
-                                                                    funds at once if you deposit more than your daily
-                                                                    withdrawal limit.</p>
-                                                                <div class="input-group">
-                                                                    <input type="text" class="form-control"
-                                                                        value="Ad87deD4gEe8dG57Ede4eEg5dREs4d5e8f4e">
-                                                                    <div class="input-group-prepend">
-                                                                        <button class="btn btn-primary">COPY</button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-4">
-                                                                <img src="/client/assets/img/qr-code-light.svg"
-                                                                    alt="qr-code">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                {{-- <div class="card">
-                                                    <div class="card-body">
-                                                        <h5 class="card-title">Latest Transactions</h5>
-                                                        <div class="wallet-history">
-                                                            <table class="table">
-                                                                <thead>
-                                                                    <tr>
-                                                                        <th>No.</th>
-                                                                        <th>Date</th>
-                                                                        <th>Status</th>
-                                                                        <th>Amount</th>
-                                                                    </tr>
-                                                                </thead>
-                                                                <tbody>
-                                                                    <tr>
-                                                                        <td>1</td>
-                                                                        <td>25-04-2019</td>
-                                                                        <td><i
-                                                                                class="icon ion-md-checkmark-circle-outline green"></i>
-                                                                        </td>
-                                                                        <td>4.5454334</td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>2</td>
-                                                                        <td>25-05-2019</td>
-                                                                        <td><i
-                                                                                class="icon ion-md-checkmark-circle-outline green"></i>
-                                                                        </td>
-                                                                        <td>0.5484468</td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>3</td>
-                                                                        <td>25-06-2019</td>
-                                                                        <td><i
-                                                                                class="icon ion-md-close-circle-outline red"></i>
-                                                                        </td>
-                                                                        <td>2.5454545</td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>4</td>
-                                                                        <td>25-07-2019</td>
-                                                                        <td><i
-                                                                                class="icon ion-md-checkmark-circle-outline green"></i>
-                                                                        </td>
-                                                                        <td>1.45894147</td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>3</td>
-                                                                        <td>25-08-2019</td>
-                                                                        <td><i
-                                                                                class="icon ion-md-close-circle-outline red"></i>
-                                                                        </td>
-                                                                        <td>2.5454545</td>
-                                                                    </tr>
-                                                                </tbody>
-                                                            </table>
-                                                        </div>
-                                                    </div>
-                                                </div> --}}
-                                            </div>
-                                            <div class="tab-pane fade" id="coinTRX" role="tabpanel">
-                                                <div class="card">
-                                                    <div class="card-body">
-                                                        <h5 class="card-title">Balances</h5>
-                                                        <ul>
-                                                            <li
-                                                                class="d-flex justify-content-between align-items-center">
-                                                                <div class="d-flex align-items-center">
-                                                                    <i class="icon ion-md-cash"></i>
-                                                                    <h2>Total Equity</h2>
-                                                                </div>
-                                                                <div>
-                                                                    <h3>4.3344 TRX</h3>
-                                                                </div>
-                                                            </li>
-                                                            <li
-                                                                class="d-flex justify-content-between align-items-center">
-                                                                <div class="d-flex align-items-center">
-                                                                    <i class="icon ion-md-checkmark"></i>
-                                                                    <h2>Available Margin</h2>
-                                                                </div>
-                                                                <div>
-                                                                    <h3>1.453 TRX</h3>
-                                                                </div>
-                                                            </li>
-                                                        </ul>
-                                                        <button class="btn green">Deposit</button>
-                                                        <button class="btn red">Withdraw</button>
-                                                    </div>
-                                                </div>
-                                                <div class="card">
-                                                    <div class="card-body">
-                                                        <h5 class="card-title">Wallet Deposit Address</h5>
-                                                        <div class="row wallet-address">
-                                                            <div class="col-md-8">
-                                                                <p>Deposits to this address are unlimited. Note that you
-                                                                    may not be able to withdraw all
-                                                                    of your
-                                                                    funds at once if you deposit more than your daily
-                                                                    withdrawal limit.</p>
-                                                                <div class="input-group">
-                                                                    <input type="text" class="form-control"
-                                                                        value="Ad87deD4gEe8dG57Ede4eEg5dREs4d5e8f4e">
-                                                                    <div class="input-group-prepend">
-                                                                        <button class="btn btn-primary">COPY</button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-4">
-                                                                <img src="/client/assets/img/qr-code-light.svg"
-                                                                    alt="qr-code">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                {{-- <div class="card">
-                                                    <div class="card-body">
-                                                        <h5 class="card-title">Latest Transactions</h5>
-                                                        <div class="wallet-history">
-                                                            <table class="table">
-                                                                <thead>
-                                                                    <tr>
-                                                                        <th>No.</th>
-                                                                        <th>Date</th>
-                                                                        <th>Status</th>
-                                                                        <th>Amount</th>
-                                                                    </tr>
-                                                                </thead>
-                                                                <tbody>
-                                                                    <tr>
-                                                                        <td>1</td>
-                                                                        <td>25-04-2019</td>
-                                                                        <td><i
-                                                                                class="icon ion-md-checkmark-circle-outline green"></i>
-                                                                        </td>
-                                                                        <td>4.5454334</td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>2</td>
-                                                                        <td>25-05-2019</td>
-                                                                        <td><i
-                                                                                class="icon ion-md-checkmark-circle-outline green"></i>
-                                                                        </td>
-                                                                        <td>0.5484468</td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>3</td>
-                                                                        <td>25-06-2019</td>
-                                                                        <td><i
-                                                                                class="icon ion-md-close-circle-outline red"></i>
-                                                                        </td>
-                                                                        <td>2.5454545</td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>4</td>
-                                                                        <td>25-07-2019</td>
-                                                                        <td><i
-                                                                                class="icon ion-md-checkmark-circle-outline green"></i>
-                                                                        </td>
-                                                                        <td>1.45894147</td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>3</td>
-                                                                        <td>25-08-2019</td>
-                                                                        <td><i
-                                                                                class="icon ion-md-close-circle-outline red"></i>
-                                                                        </td>
-                                                                        <td>2.5454545</td>
-                                                                    </tr>
-                                                                </tbody>
-                                                            </table>
-                                                        </div>
-                                                    </div>
-                                                </div> --}}
-                                            </div>
-                                            <div class="tab-pane fade" id="coinEOS" role="tabpanel">
-                                                <div class="card">
-                                                    <div class="card-body">
-                                                        <h5 class="card-title">Balances</h5>
-                                                        <ul>
-                                                            <li
-                                                                class="d-flex justify-content-between align-items-center">
-                                                                <div class="d-flex align-items-center">
-                                                                    <i class="icon ion-md-cash"></i>
-                                                                    <h2>Total Equity</h2>
-                                                                </div>
-                                                                <div>
-                                                                    <h3>33.35 EOS</h3>
-                                                                </div>
-                                                            </li>
-                                                            <li
-                                                                class="d-flex justify-content-between align-items-center">
-                                                                <div class="d-flex align-items-center">
-                                                                    <i class="icon ion-md-checkmark"></i>
-                                                                    <h2>Available Margin</h2>
-                                                                </div>
-                                                                <div>
-                                                                    <h3>4.445 EOS</h3>
-                                                                </div>
-                                                            </li>
-                                                        </ul>
-                                                        <button class="btn green">Deposit</button>
-                                                        <button class="btn red">Withdraw</button>
-                                                    </div>
-                                                </div>
-                                                <div class="card">
-                                                    <div class="card-body">
-                                                        <h5 class="card-title">Wallet Deposit Address</h5>
-                                                        <div class="row wallet-address">
-                                                            <div class="col-md-8">
-                                                                <p>Deposits to this address are unlimited. Note that you
-                                                                    may not be able to withdraw all
-                                                                    of your
-                                                                    funds at once if you deposit more than your daily
-                                                                    withdrawal limit.</p>
-                                                                <div class="input-group">
-                                                                    <input type="text" class="form-control"
-                                                                        value="Ad87deD4gEe8dG57Ede4eEg5dREs4d5e8f4e">
-                                                                    <div class="input-group-prepend">
-                                                                        <button class="btn btn-primary">COPY</button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-4">
-                                                                <img src="/client/assets/img/qr-code-light.svg"
-                                                                    alt="qr-code">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="card">
-                                                    {{-- <div class="card-body">
-                                                        <h5 class="card-title">Latest Transactions</h5>
-                                                        <div class="wallet-history">
-                                                            <table class="table">
-                                                                <thead>
-                                                                    <tr>
-                                                                        <th>No.</th>
-                                                                        <th>Date</th>
-                                                                        <th>Status</th>
-                                                                        <th>Amount</th>
-                                                                    </tr>
-                                                                </thead>
-                                                                <tbody>
-                                                                    <tr>
-                                                                        <td>1</td>
-                                                                        <td>25-04-2019</td>
-                                                                        <td><i
-                                                                                class="icon ion-md-checkmark-circle-outline green"></i>
-                                                                        </td>
-                                                                        <td>4.5454334</td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>2</td>
-                                                                        <td>25-05-2019</td>
-                                                                        <td><i
-                                                                                class="icon ion-md-checkmark-circle-outline green"></i>
-                                                                        </td>
-                                                                        <td>0.5484468</td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>3</td>
-                                                                        <td>25-06-2019</td>
-                                                                        <td><i
-                                                                                class="icon ion-md-close-circle-outline red"></i>
-                                                                        </td>
-                                                                        <td>2.5454545</td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>4</td>
-                                                                        <td>25-07-2019</td>
-                                                                        <td><i
-                                                                                class="icon ion-md-checkmark-circle-outline green"></i>
-                                                                        </td>
-                                                                        <td>1.45894147</td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>3</td>
-                                                                        <td>25-08-2019</td>
-                                                                        <td><i
-                                                                                class="icon ion-md-close-circle-outline red"></i>
-                                                                        </td>
-                                                                        <td>2.5454545</td>
-                                                                    </tr>
-                                                                </tbody>
-                                                            </table>
-                                                        </div>
-                                                    </div> --}}
-                                                </div>
-                                            </div>
-                                            <div class="tab-pane fade" id="coinXMR" role="tabpanel">
-                                                <div class="card">
-                                                    <div class="card-body">
-                                                        <h5 class="card-title">Balances</h5>
-                                                        <ul>
-                                                            <li
-                                                                class="d-flex justify-content-between align-items-center">
-                                                                <div class="d-flex align-items-center">
-                                                                    <i class="icon ion-md-cash"></i>
-                                                                    <h2>Total Equity</h2>
-                                                                </div>
-                                                                <div>
-                                                                    <h3>34.333 XMR</h3>
-                                                                </div>
-                                                            </li>
-                                                            <li
-                                                                class="d-flex justify-content-between align-items-center">
-                                                                <div class="d-flex align-items-center">
-                                                                    <i class="icon ion-md-checkmark"></i>
-                                                                    <h2>Available Margin</h2>
-                                                                </div>
-                                                                <div>
-                                                                    <h3>2.354 XMR</h3>
-                                                                </div>
-                                                            </li>
-                                                        </ul>
-                                                        <button class="btn green">Deposit</button>
-                                                        <button class="btn red">Withdraw</button>
-                                                    </div>
-                                                </div>
-                                                <div class="card">
-                                                    <div class="card-body">
-                                                        <h5 class="card-title">Wallet Deposit Address</h5>
-                                                        <div class="row wallet-address">
-                                                            <div class="col-md-8">
-                                                                <p>Deposits to this address are unlimited. Note that you
-                                                                    may not be able to withdraw all
-                                                                    of your
-                                                                    funds at once if you deposit more than your daily
-                                                                    withdrawal limit.</p>
-                                                                <div class="input-group">
-                                                                    <input type="text" class="form-control"
-                                                                        value="Ad87deD4gEe8dG57Ede4eEg5dREs4d5e8f4e">
-                                                                    <div class="input-group-prepend">
-                                                                        <button class="btn btn-primary">COPY</button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-4">
-                                                                <img src="/client/assets/img/qr-code-light.svg"
-                                                                    alt="qr-code">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="card">
-                                                    <div class="card-body">
-                                                        <h5 class="card-title">Latest Transactions</h5>
-                                                        <div class="wallet-history">
-                                                            <table class="table">
-                                                                <thead>
-                                                                    <tr>
-                                                                        <th>No.</th>
-                                                                        <th>Date</th>
-                                                                        <th>Status</th>
-                                                                        <th>Amount</th>
-                                                                    </tr>
-                                                                </thead>
-                                                                <tbody>
-                                                                    <tr>
-                                                                        <td>1</td>
-                                                                        <td>25-04-2019</td>
-                                                                        <td><i
-                                                                                class="icon ion-md-checkmark-circle-outline green"></i>
-                                                                        </td>
-                                                                        <td>4.5454334</td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>2</td>
-                                                                        <td>25-05-2019</td>
-                                                                        <td><i
-                                                                                class="icon ion-md-checkmark-circle-outline green"></i>
-                                                                        </td>
-                                                                        <td>0.5484468</td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>3</td>
-                                                                        <td>25-06-2019</td>
-                                                                        <td><i
-                                                                                class="icon ion-md-close-circle-outline red"></i>
-                                                                        </td>
-                                                                        <td>2.5454545</td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>4</td>
-                                                                        <td>25-07-2019</td>
-                                                                        <td><i
-                                                                                class="icon ion-md-checkmark-circle-outline green"></i>
-                                                                        </td>
-                                                                        <td>1.45894147</td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>3</td>
-                                                                        <td>25-08-2019</td>
-                                                                        <td><i
-                                                                                class="icon ion-md-close-circle-outline red"></i>
-                                                                        </td>
-                                                                        <td>2.5454545</td>
-                                                                    </tr>
-                                                                </tbody>
-                                                            </table>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="tab-pane fade" id="coinKCS" role="tabpanel">
-                                                <div class="card">
-                                                    <div class="card-body">
-                                                        <h5 class="card-title">Balances</h5>
-                                                        <ul>
-                                                            <li
-                                                                class="d-flex justify-content-between align-items-center">
-                                                                <div class="d-flex align-items-center">
-                                                                    <i class="icon ion-md-cash"></i>
-                                                                    <h2>Total Equity</h2>
-                                                                </div>
-                                                                <div>
-                                                                    <h3>86.577 KCS</h3>
-                                                                </div>
-                                                            </li>
-                                                            <li
-                                                                class="d-flex justify-content-between align-items-center">
-                                                                <div class="d-flex align-items-center">
-                                                                    <i class="icon ion-md-checkmark"></i>
-                                                                    <h2>Available Margin</h2>
-                                                                </div>
-                                                                <div>
-                                                                    <h3>5.78 KCS</h3>
-                                                                </div>
-                                                            </li>
-                                                        </ul>
-                                                        <button class="btn green">Deposit</button>
-                                                        <button class="btn red">Withdraw</button>
-                                                    </div>
-                                                </div>
-                                                <div class="card">
-                                                    <div class="card-body">
-                                                        <h5 class="card-title">Wallet Deposit Address</h5>
-                                                        <div class="row wallet-address">
-                                                            <div class="col-md-8">
-                                                                <p>Deposits to this address are unlimited. Note that you
-                                                                    may not be able to withdraw all
-                                                                    of your
-                                                                    funds at once if you deposit more than your daily
-                                                                    withdrawal limit.</p>
-                                                                <div class="input-group">
-                                                                    <input type="text" class="form-control"
-                                                                        value="Ad87deD4gEe8dG57Ede4eEg5dREs4d5e8f4e">
-                                                                    <div class="input-group-prepend">
-                                                                        <button class="btn btn-primary">COPY</button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-4">
-                                                                <img src="/client/assets/img/qr-code-light.svg"
-                                                                    alt="qr-code">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="card">
-                                                    <div class="card-body">
-                                                        <h5 class="card-title">Latest Transactions</h5>
-                                                        <div class="wallet-history">
-                                                            <table class="table">
-                                                                <thead>
-                                                                    <tr>
-                                                                        <th>No.</th>
-                                                                        <th>Date</th>
-                                                                        <th>Status</th>
-                                                                        <th>Amount</th>
-                                                                    </tr>
-                                                                </thead>
-                                                                <tbody>
-                                                                    <tr>
-                                                                        <td>1</td>
-                                                                        <td>25-04-2019</td>
-                                                                        <td><i
-                                                                                class="icon ion-md-checkmark-circle-outline green"></i>
-                                                                        </td>
-                                                                        <td>4.5454334</td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>2</td>
-                                                                        <td>25-05-2019</td>
-                                                                        <td><i
-                                                                                class="icon ion-md-checkmark-circle-outline green"></i>
-                                                                        </td>
-                                                                        <td>0.5484468</td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>3</td>
-                                                                        <td>25-06-2019</td>
-                                                                        <td><i
-                                                                                class="icon ion-md-close-circle-outline red"></i>
-                                                                        </td>
-                                                                        <td>2.5454545</td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>4</td>
-                                                                        <td>25-07-2019</td>
-                                                                        <td><i
-                                                                                class="icon ion-md-checkmark-circle-outline green"></i>
-                                                                        </td>
-                                                                        <td>1.45894147</td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>3</td>
-                                                                        <td>25-08-2019</td>
-                                                                        <td><i
-                                                                                class="icon ion-md-close-circle-outline red"></i>
-                                                                        </td>
-                                                                        <td>2.5454545</td>
-                                                                    </tr>
-                                                                </tbody>
-                                                            </table>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <p class="card-text mt-3 mb-0 opacity-75">Available for trading and withdrawal</p>
                                 </div>
                             </div>
                         </div>
-                        <div class="tab-pane fade" id="settings" role="tabpanel" aria-labelledby="settings-tab">
-                            <div class="card">
+                        <div class="col-md-4 mb-3">
+                            <div class="card summary-card bg-success text-white">
                                 <div class="card-body">
-                                    <h5 class="card-title">Notifications</h5>
-                                    <div class="settings-notification">
-                                        <ul>
-                                            <li>
-                                                <div class="notification-info">
-                                                    <p>Update price</p>
-                                                    <span>Get the update price in your dashboard</span>
-                                                </div>
-                                                <div class="custom-control custom-switch">
-                                                    <input type="checkbox" class="custom-control-input"
-                                                        id="notification1">
-                                                    <label class="custom-control-label" for="notification1"></label>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="notification-info">
-                                                    <p>2FA</p>
-                                                    <span>Unable two factor authentication service</span>
-                                                </div>
-                                                <div class="custom-control custom-switch">
-                                                    <input type="checkbox" class="custom-control-input"
-                                                        id="notification2" checked>
-                                                    <label class="custom-control-label" for="notification2"></label>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="notification-info">
-                                                    <p>Latest news</p>
-                                                    <span>Get the latest news in your mail</span>
-                                                </div>
-                                                <div class="custom-control custom-switch">
-                                                    <input type="checkbox" class="custom-control-input"
-                                                        id="notification3">
-                                                    <label class="custom-control-label" for="notification3"></label>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="notification-info">
-                                                    <p>Email Service</p>
-                                                    <span>Get security code in your mail</span>
-                                                </div>
-                                                <div class="custom-control custom-switch">
-                                                    <input type="checkbox" class="custom-control-input"
-                                                        id="notification4" checked>
-                                                    <label class="custom-control-label" for="notification4"></label>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="notification-info">
-                                                    <p>Phone Notify</p>
-                                                    <span>Get transition notification in your phone </span>
-                                                </div>
-                                                <div class="custom-control custom-switch">
-                                                    <input type="checkbox" class="custom-control-input"
-                                                        id="notification5" checked>
-                                                    <label class="custom-control-label" for="notification5"></label>
-                                                </div>
-                                            </li>
-                                        </ul>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <h6 class="card-subtitle mb-1">Total Profit</h6>
+                                            <h2 class="card-title mb-0">0.00 USD</h2>
+                                        </div>
+                                        <div class="icon-circle">
+                                            <i class="fas fa-chart-line fa-2x"></i>
+                                        </div>
                                     </div>
+                                    <p class="card-text mt-3 mb-0 opacity-75">Lifetime earnings from trading</p>
                                 </div>
                             </div>
-                            <div class="card settings-profile">
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <div class="card summary-card bg-info text-white">
                                 <div class="card-body">
-                                    <h5 class="card-title">Create API Key</h5>
-                                    <div class="form-row">
-                                        <div class="col-md-6">
-                                            <label for="generateKey">Generate key name</label>
-                                            <input id="generateKey" type="text" class="form-control"
-                                                placeholder="Enter your key name">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <h6 class="card-subtitle mb-1">Active Trades</h6>
+                                            <h2 class="card-title mb-0">0</h2>
                                         </div>
-                                        <div class="col-md-6">
-                                            <label for="rewritePassword">Confirm password</label>
-                                            <input id="rewritePassword" type="password" class="form-control"
-                                                placeholder="Confirm your password">
-                                        </div>
-                                        <div class="col-md-12">
-                                            <input type="submit" value="Create API key">
+                                        <div class="icon-circle">
+                                            <i class="fas fa-exchange-alt fa-2x"></i>
                                         </div>
                                     </div>
+                                    <p class="card-text mt-3 mb-0 opacity-75">Currently open positions</p>
                                 </div>
                             </div>
-                            <div class="card">
-                                <div class="card-body">
-                                    <h5 class="card-title">Your API Keys</h5>
-                                    <div class="wallet-history">
-                                        <table class="table">
-                                            <thead>
-                                                <tr>
-                                                    <th>No.</th>
-                                                    <th>Key</th>
-                                                    <th>Status</th>
-                                                    <th>Action</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>1</td>
-                                                    <td>zRmWVcrAZ1C0RZkFMu7K5v0KWC9jUJLt</td>
-                                                    <td>
-                                                        <div class="custom-control custom-switch">
-                                                            <input type="checkbox" class="custom-control-input"
-                                                                id="apiStatus1" checked>
-                                                            <label class="custom-control-label"
-                                                                for="apiStatus1"></label>
-                                                        </div>
-                                                    </td>
-                                                    <td><i class="icon ion-md-trash"></i></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>2</td>
-                                                    <td>Rv5dgnKdmVPyHwxeExBYz8uFwYQz3Jvg</td>
-                                                    <td>
-                                                        <div class="custom-control custom-switch">
-                                                            <input type="checkbox" class="custom-control-input"
-                                                                id="apiStatus2">
-                                                            <label class="custom-control-label"
-                                                                for="apiStatus2"></label>
-                                                        </div>
-                                                    </td>
-                                                    <td><i class="icon ion-md-trash"></i></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>3</td>
-                                                    <td>VxEYIs1HwgmtKTUMA4aknjSEjjePZIWu</td>
-                                                    <td>
-                                                        <div class="custom-control custom-switch">
-                                                            <input type="checkbox" class="custom-control-input"
-                                                                id="apiStatus3">
-                                                            <label class="custom-control-label"
-                                                                for="apiStatus3"></label>
-                                                        </div>
-                                                    </td>
-                                                    <td><i class="icon ion-md-trash"></i></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>4</td>
-                                                    <td>M01DueJ4x3awI1SSLGT3CP1EeLSnqt8o</td>
-                                                    <td>
-                                                        <div class="custom-control custom-switch">
-                                                            <input type="checkbox" class="custom-control-input"
-                                                                id="apiStatus4">
-                                                            <label class="custom-control-label"
-                                                                for="apiStatus4"></label>
-                                                        </div>
-                                                    </td>
-                                                    <td><i class="icon ion-md-trash"></i></td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
+                        </div>
+                    </div>
+
+                    <!-- Quick Actions -->
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h5 class="card-title">Quick Actions</h5>
+                            <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    <a href="{{ route('deposit.form') }}" class="btn btn-success btn-lg w-100 h-100 d-flex flex-column justify-content-center align-items-center p-4">
+                                        <i class="fas fa-plus-circle fa-3x mb-3"></i>
+                                        <span class="h4 mb-2">Deposit</span>
+                                        <small class="text-light opacity-75">Add funds to your account</small>
+                                    </a>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <a href="{{ route('withdraw') }}" class="btn btn-danger btn-lg w-100 h-100 d-flex flex-column justify-content-center align-items-center p-4">
+                                        <i class="fas fa-minus-circle fa-3x mb-3"></i>
+                                        <span class="h4 mb-2">Withdraw</span>
+                                        <small class="text-light opacity-75">Withdraw funds from your account</small>
+                                    </a>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <a href="{{ route('trading') }}" class="btn btn-primary btn-lg w-100 h-100 d-flex flex-column justify-content-center align-items-center p-4">
+                                        <i class="fas fa-exchange-alt fa-3x mb-3"></i>
+                                        <span class="h4 mb-2">Trade</span>
+                                        <small class="text-light opacity-75">Start trading now</small>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Withdrawal Address -->
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h5 class="card-title d-flex justify-content-between align-items-center">
+                                <span>Withdrawal Address</span>
+                                <button class="btn btn-sm btn-outline-primary" id="editAddressBtn">
+                                    <i class="fas fa-edit me-1"></i>Edit
+                                </button>
+                            </h5>
+                            <div class="row">
+                                <div class="col-md-10 mx-auto">
+                                    <p class="text-muted mb-3">Your withdrawal address for sending funds. Make sure this address is correct before withdrawing.</p>
+                                    <div class="input-group mb-3">
+                                        <input type="text" class="form-control form-control-lg" 
+                                               value="{{ $user->withdrawal_address }}" 
+                                               id="withdrawalAddress" readonly>
+                                        <button class="btn btn-outline-secondary" type="button" onclick="copyAddress()">
+                                            <i class="fas fa-copy"></i> Copy
+                                        </button>
+                                    </div>
+                                    <div class="alert alert-info">
+                                        <i class="fas fa-info-circle me-2"></i>
+                                        <small>Always verify your withdrawal address before confirming transactions. This address is used for all withdrawals.</small>
                                     </div>
                                 </div>
+                               
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recent Transactions -->
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title d-flex justify-content-between align-items-center">
+                                <span>Recent Transactions</span>
+                                <a href="#" class="btn btn-outline-secondary">
+                                    <i class="fas fa-history me-1"></i>View All
+                                </a>
+                            </h5>
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Date</th>
+                                            <th>Type</th>
+                                            <th>Amount</th>
+                                            <th>Status</th>
+                                            <th>Details</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td colspan="5" class="text-center py-5">
+                                                <i class="fas fa-exchange-alt fa-3x text-muted mb-3"></i>
+                                                <p class="text-muted mb-0">No transactions yet</p>
+                                                <small class="text-muted">Start trading to see your transaction history</small>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
@@ -1180,18 +175,22 @@
         </div>
     </div>
 
+    <!-- Footer / Navigation -->
+    @include('user.common.navbar')
+
+    <!-- Scripts -->
     <script src="/client/assets/js/jquery-3.4.1.min.js"></script>
     <script src="/client/assets/js/popper.min.js"></script>
     <script src="/client/assets/js/bootstrap.min.js"></script>
     <script src="/client/assets/js/amcharts-core.min.js"></script>
     <script src="/client/assets/js/amcharts.min.js"></script>
     <script src="/client/assets/js/custom.js"></script>
-    <!-- Include SweetAlert2 and Axios -->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // Handle alerts
             @if (session('success'))
                 Swal.fire({
                     icon: 'success',
@@ -1226,13 +225,163 @@
                     });
                 @endforeach
             @endif
+
+            // Copy address function
+            window.copyAddress = function() {
+                const addressInput = document.getElementById('withdrawalAddress');
+                addressInput.select();
+                addressInput.setSelectionRange(0, 99999);
+                
+                try {
+                    navigator.clipboard.writeText(addressInput.value);
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Copied!',
+                        text: 'Address copied to clipboard',
+                        toast: true,
+                        position: 'top-end',
+                        timer: 2000,
+                        showConfirmButton: false
+                    });
+                } catch (err) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Failed to copy',
+                        text: 'Please try again',
+                        toast: true,
+                        position: 'top-end',
+                        timer: 2000,
+                        showConfirmButton: false
+                    });
+                }
+            };
+
+            // Edit address button
+            document.getElementById('editAddressBtn')?.addEventListener('click', function() {
+                Swal.fire({
+                    title: 'Edit Withdrawal Address',
+                    input: 'text',
+                    inputLabel: 'New withdrawal address',
+                    inputValue: document.getElementById('withdrawalAddress').value,
+                    showCancelButton: true,
+                    confirmButtonText: 'Update',
+                    cancelButtonText: 'Cancel',
+                    inputValidator: (value) => {
+                        if (!value) {
+                            return 'Please enter a valid address';
+                        }
+                    }
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Here you would typically send an AJAX request to update the address
+                        // For now, we'll just update the UI
+                        document.getElementById('withdrawalAddress').value = result.value;
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Updated!',
+                            text: 'Withdrawal address updated successfully',
+                            timer: 2000,
+                            showConfirmButton: false
+                        });
+                    }
+                });
+            });
         });
     </script>
 
-    @include('user.common.navbar')
+    <style>
+        /* Custom styles */
+        .page-header {
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .page-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .page-subtitle {
+            font-size: 1rem;
+        }
+        
+        .summary-card {
+            border-radius: 12px;
+            transition: transform 0.3s ease;
+            border: none;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .summary-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .icon-circle {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .btn-lg {
+            padding: 1.5rem 1rem;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            border: none;
+        }
+        
+        .btn-lg:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .qr-code-container {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .table {
+            background: transparent;
+        }
+        
+        .table th {
+            border-top: none;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .table td {
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 1.5rem;
+            }
+            
+            .icon-circle {
+                width: 50px;
+                height: 50px;
+            }
+            
+            .icon-circle i {
+                font-size: 1.5rem;
+            }
+            
+            .btn-lg {
+                padding: 1rem 0.5rem;
+            }
+            
+            .btn-lg i.fa-3x {
+                font-size: 2rem;
+            }
+        }
+    </style>
 
 </body>
-
-
-
 </html>

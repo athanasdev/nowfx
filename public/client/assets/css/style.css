@@ -11,6 +11,12 @@ body {
     font-weight: 400;
 }
 
+/* Binance-like dark theme */
+#dark body {
+    background: #0a0a0a;
+    color: #ffffff;
+}
+
 a,
 a:hover {
     text-decoration: none;
@@ -128,6 +134,22 @@ tbody tr:hover {
 
 .red {
     color: #ff231f;
+}
+
+/* Binance gold accents */
+#dark .gold-accent {
+    color: #fbbc06;
+}
+
+#dark .btn-gold {
+    background: #fbbc06;
+    color: #000000;
+    border: 1px solid #fbbc06;
+}
+
+#dark .btn-gold:hover {
+    background: #e6a800;
+    border-color: #e6a800;
 }
 
 .table td,
@@ -1282,6 +1304,13 @@ tbody.ob-heading {
     margin-bottom: 30px;
 }
 
+/* Binance-like dark cards */
+#dark .markets-container {
+    background: #1a1a1a;
+    border: 1px solid #2a2a2a;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
 .markets-chart {
     position: absolute;
     top: 40px;
@@ -1352,6 +1381,22 @@ tbody.ob-heading {
 
 .markets-pair-list th {
     font-weight: 400;
+}
+
+/* Binance-like dark table */
+#dark .markets-pair-list .nav {
+    background: #1a1a1a;
+    border-bottom: 1px solid #2a2a2a;
+}
+
+#dark .markets-pair-list th,
+#dark .markets-pair-list td {
+    color: #ffffff;
+    border-color: #2a2a2a;
+}
+
+#dark .markets-pair-list tbody tr:hover {
+    background: #2a2a2a;
 }
 
 .markets-pair-list td img {
